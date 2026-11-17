@@ -1,0 +1,14 @@
+# Foto & audio mentah klien sebelum dikompresi (jangan masuk Git)
+raw-assets/
+
+# Environment & OS files
+.env
+.env.*
+.DS_Store
+Thumbs.db
+
+# Catatan: .agent/ sengaja TIDAK di-ignore agar ikut ter-clone dari GitHub Template.
+# Jika di repo klien tertentu tidak ingin log kerja ikut ter-push, uncomment 3 baris di bawah:
+# .agent/artifacts/issues/*.md
+# .agent/handoffs/*.md
+# .agent/bugs/*.md
