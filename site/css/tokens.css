@@ -1,0 +1,36 @@
+/* Desain: Palet, font, skala, radius & z-index (edit per project) */
+:root,[data-theme="editorial"]{
+  --bg-outer:#EAE5DF;--bg-primary:#FAF8F5;--bg-surface:#F2ECE4;--bg-elevated:#FFFFFF;
+  --text-primary:#1E1B18;--text-secondary:#524B44;--text-muted:#7D746B;
+  --accent-primary:#8C6D53;--accent-hover:#735740;--accent-contrast:#FFFFFF;
+  --border-subtle:#DFD7CE;--overlay-scrim:rgba(24,20,17,.56);
+  --font-display:'Cormorant Garamond',Georgia,serif;
+  --font-sans:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+[data-theme="botanical"]{
+  --bg-outer:#E4E8E1;--bg-primary:#F7F8F4;--bg-surface:#EDF1EA;--bg-elevated:#FFFFFF;
+  --text-primary:#1C241E;--text-secondary:#465248;--text-muted:#6E7B70;
+  --accent-primary:#4A6350;--accent-hover:#394E3E;--accent-contrast:#FFFFFF;
+  --border-subtle:#D4DDD0;--overlay-scrim:rgba(22,30,24,.54);
+  --font-display:'Playfair Display',Georgia,serif;
+}
+[data-theme="heritage"]{
+  --bg-outer:#161210;--bg-primary:#1F1916;--bg-surface:#2A221E;--bg-elevated:#352B26;
+  --text-primary:#F5EFE6;--text-secondary:#D5C7B8;--text-muted:#9E8F80;
+  --accent-primary:#C8A97E;--accent-hover:#B39264;--accent-contrast:#1F1916;
+  --border-subtle:#463931;--overlay-scrim:rgba(15,11,9,.68);
+}
+:root{
+  --status-success-bg:#EBF5EE;--status-success-text:#1F5E34;--status-success-border:#A8D5B5;
+  --status-error-bg:#FDEEEE;--status-error-text:#9E2A2B;--status-error-border:#F3B6B7;
+  --status-warning-bg:#FEF7E6;--status-warning-text:#8A5A00;--status-warning-border:#F5D487;
+  --text-xs:.75rem;--text-sm:.875rem;--text-base:1rem;--text-lg:1.125rem;
+  --text-xl:clamp(1.25rem,4vw,1.5rem);--text-2xl:clamp(1.625rem,5vw,2rem);--text-display:clamp(2.25rem,8vw,3.25rem);
+  --canvas-max-width:480px;--sender-max-width:720px;--container-px:1.5rem;--section-py:clamp(3.25rem,9vw,4.5rem);
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-12:3rem;
+  --radius-sm:6px;--radius-md:10px;--radius-lg:16px;--radius-arch:200px 200px 16px 16px;--radius-full:9999px;
+  --border-thin:1px solid var(--border-subtle);--tap-target-min:44px;
+  --shadow-sm:0 2px 8px rgba(20,16,12,.05);--shadow-md:0 8px 24px rgba(20,16,12,.08);--shadow-floating:0 10px 30px rgba(20,16,12,.16);
+  --z-base:1;--z-sticky:20;--z-floating-audio:40;--z-toast:60;--z-lightbox:80;--z-cover-gate:100;
+}

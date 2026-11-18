@@ -1,92 +1,70 @@
 # PROMPTS.md — Template Prompt Siap-Copy
 
-Gunakan prompt di bawah ini secara berurutan setelah kamu menyesuaikan [`DESIGN-BRIEF.md`](./DESIGN-BRIEF.md).
+Pilih alur yang paling nyaman setelah mengedit [`BRIEF.md`](./BRIEF.md):
+- **Alur 2 Tahap *(Rekomendasi untuk kontrol desain)*:** Pakai **Prompt 1 (Issue Detail)** → review sebentar → jalankan **Prompt 2 (Eksekusi Implementasi)**.
+- **Alur 1x Prompt *(One-Shot)*:** Langsung pakai **Prompt One-Shot** di bawah.
+- **Setelah Preview di HP:** Pakai **Prompt 3 (Fix UI Cepat)** berkali-kali seperlunya.
 
 ---
 
-## 1️⃣ Prompt Buat Issue Detail (`@arsitek` / Planning)
-*Paste prompt ini terlebih dahulu agar AI menyusun spesifikasi lengkap (visual per section + teknis file) sebelum coding dimulai:*
-
+## 1️⃣ Prompt Buat Issue Detail (`make_issue`)
 ```text
-Baca `DESIGN-BRIEF.md`, `.agent/DESIGN.md`, `.agent/AGENTS.md`, dan ikuti skill `.agent/skills/write_specs.md`.
+Baca `AGENTS.md`, `BRIEF.md`, dan `.agent/TECH-SPEC.md`.
+Ikuti `.agent/skills/make_issue.md`.
 
-Tugasmu sebagai @arsitek:
-1. Terjemahkan konsep desain, palet warna, tipografi, gaya visual, dan data klien di `DESIGN-BRIEF.md` menjadi 1 Issue Spec implementasi yang sangat detail dan siap dieksekusi sekali jalan oleh AI Coder Implementer.
-2. Pastikan seluruh tech stack mengikat di `.agent/DESIGN.md` tetap terjaga (static-first HTML5/CSS3/Vanilla JS, zero framework/build step, total CSS+JS < 50 KB, struktur `site/` standalone + `gas/Code.gs`, static OG tags absolut, anti-XSS `textContent`, isolasi `RSVP` vs `Guestbook`, WA Sender `/kirim/` 100% `localStorage`).
-3. Simpan hasilnya ke `.agent/artifacts/issues/01-build-invitation.md` dengan rincian:
-   - Visual & layout blueprint per section (hierarki tipografi, proporsi kartu/foto, scrim, spacing, animasi GPU-only)
-   - File tree & pemetaan lengkap `site/` + `gas/Code.gs`
-   - Token CSS di `site/css/tokens.css` sesuai konsep di `DESIGN-BRIEF.md`
-   - Kontrak DOM IDs, `site/config.json`, `gas/Code.gs`, dan `localStorage`
-   - Verification checklist & acceptance criteria.
-4. Jangan tulis kode aplikasi dulu di langkah ini.
+Buatkan Issue Detail lengkap dan simpan ke `.agent/issues/01-design.md` berdasarkan konsep visual & data di `BRIEF.md`.
+Pastikan blueprint visual per section (tipografi, palet, komposisi layout, bingkai foto, ornamentasi SVG ringan, dan animasi GPU-only) dirinci dengan jelas, sambil tetap menjaga seluruh kontrak plumbing & aturan keamanan `AGENTS.md` / `.agent/TECH-SPEC.md`.
+Jangan edit kode di `site/` atau `gas/` dulu.
 ```
 
 ---
 
-## 2️⃣ Prompt Kerjakan Implementasi Full (`@engineer` / AI Coder Implementer)
-*Setelah Issue Detail `01-build-invitation.md` selesai dan kamu setujui, paste prompt ini ke AI Coder:*
-
+## 2️⃣ Prompt Eksekusi Desain & Konten (`apply_design`)
 ```text
-Baca `.agent/artifacts/issues/01-build-invitation.md`, `DESIGN-BRIEF.md`, `.agent/DESIGN.md`, dan ikuti `.agent/skills/generate_code.md`.
+Baca `AGENTS.md`, `BRIEF.md`, `.agent/TECH-SPEC.md`, dan `.agent/issues/01-design.md`.
+Ikuti `.agent/skills/apply_design.md`.
 
-Tugasmu sebagai @engineer (AI Coder Implementer):
-1. Implementasikan seluruh file di `site/` (`index.html`, `config.json`, `css/*`, `js/*`, `icons/*`, `kirim/index.html`) dan `gas/Code.gs` secara utuh tanpa placeholder dalam satu kali jalan.
-2. Jika aset media di `site/assets/` belum diisi foto asli klien, pastikan kode tidak error saat gambar belum ada atau gunakan fallback elegan sesuai spec (dan catat daftar file aset yang perlu ditaruh di `site/assets/`).
-3. Jalankan verifikasi yang tersedia di Termux serta lakukan self-audit memakai checklist `.agent/skills/audit_code.md`:
-   - Validasi JSON `site/config.json`
-   - Hitung total ukuran seluruh file CSS + JS di `site/` (wajib < 50 KB)
-   - Pastikan zero `innerHTML` untuk `?to=` & Guestbook (`textContent` wajib)
-   - Pastikan `doGet` di `gas/Code.gs` hanya baca `Guestbook` (tidak pernah menyentuh `RSVP`)
-   - Pastikan `/kirim/` memakai `noindex, nofollow` & 100% `localStorage` tanpa request jaringan keluar
-   - Pastikan static `<meta property="og:*">` hardcoded dengan URL absolut `https://...` di `site/index.html`.
-4. Tulis ringkasan hasil & cara preview di `.agent/handoffs/01-build-invitation.md` dan laporkan hasilnya dengan jujur.
+Implementasikan desain & konten dari issue tersebut ke dalam `site/`:
+1. Rombak lapisan visual (`site/css/tokens.css`, `site/css/sections.css`, `site/css/motion.css`, struktur visual `site/index.html`, dan `site/js/app.js` bila layout berubah) agar benar-benar mencerminkan konsep di `BRIEF.md` — bukan sekadar mengganti sedikit warna.
+2. Sinkronkan `site/config.json` dan static `<meta property="og:*">` URL absolut di `site/index.html`.
+3. Pertahankan utuh plumbing `gas/Code.gs`, `site/js/api.js`, `site/js/audio.js`, `site/js/wa-sender.js`, `site/kirim/index.html`, serta semua aturan keamanan (`textContent` anti-XSS, isolasi RSVP, WA `localStorage`, < 50 KB total CSS+JS).
+4. Jalankan verifikasi & self-audit di Termux, lalu laporkan hasil, total ukuran CSS+JS `site/`, dan cara preview.
 ```
 
 ---
 
-## 3️⃣ Prompt Fix UI Cepat (`polish_ui`)
-*Setelah preview di browser HP, pakai prompt ini untuk memoles tampilan berulang kali tanpa ribet:*
-
+## ⚡ Alternatif: Prompt One-Shot (Buat Issue + Langsung Kerjakan)
 ```text
-Ikuti `.agent/skills/polish_ui.md` dan `.agent/DESIGN.md`.
+Baca `AGENTS.md`, `BRIEF.md`, dan `.agent/TECH-SPEC.md`.
+
+Kerjakan dalam 1x jalan:
+1. Pertama, tulis rencana Issue Detail di `.agent/issues/01-design.md` sesuai `.agent/skills/make_issue.md` untuk menerjemahkan konsep visual & data di `BRIEF.md`.
+2. Langsung lanjut eksekusi sesuai `.agent/skills/apply_design.md`: rombak desain `site/css/{tokens,sections,motion}.css`, `site/index.html`, `site/js/app.js`, dan `site/config.json` (plus static OG tags absolut). Pertahankan utuh plumbing `gas/Code.gs`, `api.js`, `audio.js`, `wa-sender.js`, dan `kirim/`.
+3. Jalankan validasi JSON `site/config.json`, pastikan total CSS+JS `site/` < 50 KB, audit keamanan (no innerHTML user data, isolasi RSVP, WA localStorage), dan laporkan hasilnya secara jujur.
+```
+
+---
+
+## 3️⃣ Prompt Fix UI Cepat (`fix_ui`)
+```text
+Baca `AGENTS.md` dan ikuti `.agent/skills/fix_ui.md`.
 
 Tolong fix UI / poles tampilan berikut:
-- [TULIS PERUBAHAN VISUAL DI SINI, contoh:
-  1. Hero terlalu tinggi di layar 360px, tombol CTA agak turun.
-  2. Kartu acara kurang terasa editorial mewah — rapikan hierarki font & border-nya.
-  3. Animasi Cover Gate buat terasa lebih halus.]
+- [TULIS POIN PERUBAHAN VISUAL DI SINI, contoh:
+  1. Hero terlalu tinggi di 360px, tombol CTA kurang menonjol.
+  2. Kartu acara buat lebih lega dengan garis hairline yang tegas.
+  3. Ubah urutan/spacing section couple supaya lebih editorial.]
 
-Aturan wajib saat edit:
-- Tetap pakai CSS custom properties di `site/css/tokens.css` (jangan hardcode warna/font liar).
-- Jangan pecahkan tampilan di lebar `360px` (tidak ada horizontal scroll) dan desktop tetap centered `480px`.
-- Jaga animasi tetap GPU-only (`transform`, `opacity`) + `prefers-reduced-motion`.
-- Jangan ubah DOM IDs/atribut data yang dipakai `site/js/app.js` / `api.js` / `audio.js`, dan pastikan total CSS+JS tetap < 50 KB.
+Jaga token CSS di `site/css/tokens.css`, jangan merusak ID DOM/plumbing JS, pastikan 360px bebas horizontal scroll, input >= 16px, GPU-only motion, dan total CSS+JS `site/` tetap < 50 KB.
 ```
 
 ---
 
-## 4️⃣ Prompt Audit Independen (`@reviewer`) — *Opsional*
-*Pakai jika ingin pengecekan ulang ekstra ketat dari sudut pandang reviewer sebelum deploy live:*
-
+## 4️⃣ Prompt Debug Error (`fix_ui` Mode RCA) — *Saat Ada Error*
 ```text
-Ikuti `.agent/skills/audit_code.md` dan `.agent/DESIGN.md`.
-Review seluruh implementasi di `site/` dan `gas/Code.gs` terhadap `.agent/artifacts/issues/01-build-invitation.md` dan `.agent/handoffs/01-build-invitation.md`.
-Periksa ulang keamanan (XSS, isolasi RSVP, formula injection, privasi WA Sender `localStorage`), OG tags statis, responsivitas 360px, dan total ukuran CSS+JS (< 50 KB).
-Keluarkan status `APPROVED` atau `REVISION NEEDED` dengan lokasi file & baris eksak jika ada temuan.
-```
-
----
-
-## 5️⃣ Prompt Debug Error (`@debugger`) — *Hanya Saat Error Merah / Bug Live*
-*Pakai hanya jika muncul error di console browser, CORS/GAS gagal, layout 360px pecah, atau OG WhatsApp tidak muncul:*
-
-```text
-Ikuti `.agent/skills/debug_issue.md` dan `.agent/DESIGN.md`.
-Jangan langsung ubah kode sebelum Root Cause Analysis selesai.
+Baca `AGENTS.md`, `.agent/TECH-SPEC.md`, dan ikuti mode Debug di `.agent/skills/fix_ui.md`.
+Jangan langsung tambal gejala—lakukan Root Cause Analysis pada file terkait terlebih dahulu.
 
 Gejala / Error Log:
-[PASTE PESAN ERROR, CONSOLE LOG, ATAU DESKRIPSI BUG DI SINI]
-
-Lakukan RCA di file terkait, tulis bug ticket ke `.agent/bugs/bug-01-[slug].md` lengkap dengan Fix Plan eksak, lalu terapkan perbaikannya setelah RCA jelas.
+[PASTE ERROR CONSOLE, CORS/GAS, LAYOUT 360px PECAH, ATAU MASALAH OG WHATSAPP DI SINI]
 ```

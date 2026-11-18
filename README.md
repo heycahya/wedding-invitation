@@ -1,28 +1,28 @@
-# Digital Wedding Invitation — Project Template
+# Wedding Invitation — Static Web Template
 
-Template repository siap-clone untuk membangun website undangan pernikahan digital (*low-framework, static-first, biaya infra Rp0*).  
-Setiap kali membuat project undangan baru, clone template ini, sesuaikan **konsep desain & data klien** di `DESIGN-BRIEF.md`, lalu eksekusi lewat template prompt di `PROMPTS.md`.
-
----
-
-## Cara Pakai Setelah Clone dari GitHub
-
-1. **Siapkan Konsep Desain & Data Klien:**
-   Buka [`DESIGN-BRIEF.md`](./DESIGN-BRIEF.md) dan isi bagian yang bertanda `[ISI PER PROJECT]` (konsep visual, palet warna, tipografi, nama mempelai, acara, fitur aktif, dan template WA).
-2. **Generate Issue Detail:**
-   Buka [`PROMPTS.md`](./PROMPTS.md), salin **Prompt 1 (Buat Issue Detail)**, lalu paste ke AI Planner / `@arsitek`. Hasilnya tersimpan di `.agent/artifacts/issues/01-build-invitation.md`.
-3. **Implementasi oleh AI Coder:**
-   Salin **Prompt 2 (Implementasi Full)** dari [`PROMPTS.md`](./PROMPTS.md) ke AI Coder Implementer / `@engineer` untuk membangun `site/` + `gas/Code.gs` dalam satu kali eksekusi lengkap dengan self-audit.
-4. **Fix UI & Deploy:**
-   Preview hasilnya di browser HP, poles tampilan pakai **Prompt 3 (Fix UI Cepat)** bila perlu, optimasi aset, hubungkan Google Sheet & Cloudflare Pages sesuai [`.agent/workflows/newproject.md`](./.agent/workflows/newproject.md).
+Template repository siap-clone untuk membuat website undangan pernikahan digital (*HTML5, CSS3 Custom Properties, Vanilla JS ES6+, Cloudflare Pages, Google Apps Script + Google Sheets*).  
+Seluruh kerangka website (`site/`) dan backend (`gas/Code.gs`) sudah ter-scaffold utuh dan siap jalan — setiap project baru cukup mengganti **konsep desain & data acara**.
 
 ---
 
-## Peta File Penting
+## Cara Pakai Setelah Clone
 
-- [`DESIGN-BRIEF.md`](./DESIGN-BRIEF.md) — **File yang diedit tiap project** (konsep desain & brief klien).
-- [`PROMPTS.md`](./PROMPTS.md) — **Template prompt siap-paste** untuk AI (`Issue Detail → Implementasi → Fix UI`).
-- [`project-context.md`](./project-context.md) — Konteks ringkas & status progress project ini.
-- [`.agent/DESIGN.md`](./.agent/DESIGN.md) — Arsitektur & tech stack terkunci (*HTML5/CSS3/Vanilla JS, GAS, Sheets, WA Sender `localStorage`, Security & `< 50 KB` budget*).
-- [`.agent/AGENTS.md`](./.agent/AGENTS.md) — Aturan mutlak produk & perilaku agen.
-- [`.agent/skills/`](./.agent/skills/) & [`.agent/workflows/`](./.agent/workflows/) — Instruksi detail agen & SOP produksi.
+1. **Isi Brief Desain & Data:** Buka [`BRIEF.md`](./BRIEF.md) dan isi konsep visual serta data undangan.
+2. **Generate Issue & Desain Baru:** Buka [`PROMPTS.md`](./PROMPTS.md), salin prompt yang sesuai (bisa bertahap **Issue Detail → Implementasi** atau langsung **One-Shot**) dan kirim ke AI agent.
+3. **Preview & Fix UI di Termux:**
+   ```bash
+   python3 -m http.server 8080 --directory site
+   ```
+   Buka `http://localhost:8080/?to=Tamu+Undangan` dan `http://localhost:8080/kirim/` di browser HP. Gunakan **Prompt Fix UI** bila ada tampilan yang ingin dipoles.
+4. **Optimasi Aset & Deploy:** Masukkan media terkompresi ke `site/assets/`, deploy `gas/Code.gs` ke Google Apps Script, dan hubungkan folder `site/` ke Cloudflare Pages.
+
+---
+
+## Struktur Utama
+
+- [`AGENTS.md`](./AGENTS.md) — Aturan mutlak, arsitektur, dan mode eksekusi AI.
+- [`BRIEF.md`](./BRIEF.md) — Tempat menyesuaikan desain visual & data tiap project.
+- [`PROMPTS.md`](./PROMPTS.md) — Template prompt siap-paste.
+- [`.agent/TECH-SPEC.md`](./.agent/TECH-SPEC.md) — Kontrak baku `config.json`, API GAS, Google Sheets, dan `localStorage`.
+- [`site/`](./site/) — Website statis siap publikasi (`index.html`, `config.json`, `css/`, `js/`, `icons/`, `kirim/`, `assets/`).
+- [`gas/Code.gs`](./gas/Code.gs) — Backend Google Apps Script (RSVP & Guestbook).

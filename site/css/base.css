@@ -1,0 +1,27 @@
+/* Plumbing: Reset, tipografi dasar, kanvas 480px & aksesibilitas */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg-outer);color:var(--text-primary);font-family:var(--font-sans);font-size:var(--text-base);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.is-locked{overflow:hidden;height:100dvh}
+img,svg{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+input,select,textarea{width:100%;min-height:var(--tap-target-min);font-size:var(--text-base);padding:var(--space-3) var(--space-4);background:var(--bg-elevated);border:var(--border-thin);border-radius:var(--radius-md);color:var(--text-primary)}
+textarea{min-height:108px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--accent-primary);outline-offset:2px}
+button,.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);min-height:var(--tap-target-min);padding:var(--space-3) var(--space-5);border:1px solid transparent;border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:500;text-decoration:none;cursor:pointer;background:var(--accent-primary);color:var(--accent-contrast);transition:transform var(--duration-instant) ease,background-color var(--duration-instant) ease}
+button:hover,.btn:hover{background:var(--accent-hover)}
+button:active,.btn:active{transform:scale(.98)}
+button:disabled{opacity:.6;cursor:not-allowed}
+.btn-outline{background:transparent;color:var(--text-primary);border-color:var(--border-subtle)}
+.btn-outline:hover{background:var(--bg-surface)}
+.invitation-canvas{width:100%;min-height:100dvh;background:var(--bg-primary);position:relative;overflow-x:clip}
+@media(min-width:481px){.invitation-canvas{max-width:var(--canvas-max-width);margin:0 auto;box-shadow:var(--shadow-floating)}}
+.section{padding:var(--section-py) var(--container-px);min-width:0;overflow-wrap:break-word}
+[hidden]{display:none!important}
+.section--surface{background:var(--bg-surface)}
+.section-header{text-align:center;margin-bottom:var(--space-8)}
+.eyebrow{margin:0 0 var(--space-2);font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)}
+.section-title{margin:0 0 var(--space-3);font-family:var(--font-display);font-size:var(--text-2xl);font-weight:600;line-height:1.2}
+.section-subtitle{margin:0;color:var(--text-secondary);font-size:var(--text-sm)}
+.card{background:var(--bg-elevated);border:var(--border-thin);border-radius:var(--radius-lg);padding:var(--space-6);box-shadow:var(--shadow-sm);min-width:0}
+.hp-trap{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}

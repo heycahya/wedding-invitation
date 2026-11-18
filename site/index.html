@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="editorial">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Pernikahan — Nama Mempelai</title>
+  <meta name="description" content="Kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada hari bahagia kami.">
+
+  <!-- Open Graph Statis: wajib hardcoded dengan URL absolut https://... -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:title" content="Undangan Pernikahan — Nama Mempelai">
+  <meta property="og:description" content="Buka undangan untuk informasi lengkap waktu, lokasi acara, dan konfirmasi kehadiran.">
+  <meta property="og:url" content="https://example.pages.dev/">
+  <meta property="og:image" content="https://example.pages.dev/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/sections.css">
+  <link rel="stylesheet" href="./css/motion.css">
+</head>
+<body class="is-locked">
+  <!-- 1. Cover Gate -->
+  <section id="section-cover" class="cover-gate" aria-label="Pembuka Undangan">
+    <img id="cover-img" class="cover-gate__bg" src="" alt="" hidden>
+    <div id="cover-scrim" class="cover-gate__scrim" hidden></div>
+    <div class="cover-gate__content">
+      <p id="cover-subtitle" class="eyebrow">The Wedding of</p>
+      <h2 id="cover-title" class="cover-gate__title">Mempelai</h2>
+      <p id="cover-date" class="cover-gate__date"></p>
+      <div class="cover-gate__guest-box">
+        <p id="cover-guest-prefix" class="cover-gate__guest-label">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+        <p id="guest-name" class="cover-gate__guest-name">Tamu Undangan</p>
+      </div>
+      <button id="btn-open-invitation" type="button">
+        <span id="cover-btn-text">Buka Undangan</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Error Fallback Muat Konfigurasi -->
+  <div id="load-error" class="section" hidden>
+    <div class="card" style="text-align:center;">
+      <p>Maaf, data undangan gagal dimuat. Periksa koneksi internet Anda.</p>
+      <button id="btn-retry-load" type="button">Muat Ulang</button>
+    </div>
+  </div>
+
+  <!-- Kanvas Utama -->
+  <main class="invitation-canvas">
+    <!-- 2. Hero -->
+    <section id="section-hero" class="section hero">
+      <div id="hero-frame" class="hero__frame reveal">
+        <img id="hero-img" class="hero__img" src="" alt="Foto Utama Mempelai" hidden>
+        <span id="hero-monogram" class="hero__monogram">A &amp; B</span>
+      </div>
+      <p id="hero-subtitle" class="eyebrow reveal reveal-delay-1">We Are Getting Married</p>
+      <h1 id="hero-title" class="hero__title reveal reveal-delay-2">Mempelai</h1>
+      <p id="hero-date" class="hero__date reveal reveal-delay-3"></p>
+      <div class="hero__scroll" aria-hidden="true">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </section>
+
+    <!-- 3. Quote -->
+    <section id="section-quote" class="section section--surface">
+      <blockquote class="quote-box reveal">
+        <p id="quote-text" class="quote-box__text"></p>
+        <footer id="quote-source" class="quote-box__source"></footer>
+      </blockquote>
+    </section>
+
+    <!-- 4. Couple -->
+    <section id="section-couple" class="section">
+      <header class="couple-intro reveal">
+        <h2 id="couple-greeting-title" class="couple-intro__title"></h2>
+        <p id="couple-greeting-body" class="couple-intro__body"></p>
+      </header>
+      <div id="couple-list" class="couple-list"></div>
+    </section>
+
+    <!-- 5. Events -->
+    <section id="section-events" class="section section--surface">
+      <header class="section-header reveal">
+        <h2 id="events-title" class="section-title">Rangkaian Acara</h2>
+        <p id="events-subtitle" class="section-subtitle"></p>
+      </header>
+      <div id="events-list" class="events-list"></div>
+    </section>
+
+    <!-- 6. Countdown -->
+    <section id="section-countdown" class="section">
+      <header class="section-header reveal">
+        <h2 id="countdown-title" class="section-title">Menuju Hari Bahagia</h2>
+      </header>
+      <div class="countdown-grid reveal" aria-live="off">
+        <div class="countdown-box"><span id="cd-days" class="countdown-box__num">00</span><span class="countdown-box__label">Hari</span></div>
+        <div class="countdown-box"><span id="cd-hours" class="countdown-box__num">00</span><span class="countdown-box__label">Jam</span></div>
+        <div class="countdown-box"><span id="cd-mins" class="countdown-box__num">00</span><span class="countdown-box__label">Menit</span></div>
+        <div class="countdown-box"><span id="cd-secs" class="countdown-box__num">00</span><span class="countdown-box__label">Detik</span></div>
+      </div>
+      <p id="countdown-status" class="countdown-status" hidden></p>
+    </section>
+
+    <!-- 7. Love Story -->
+    <section id="section-story" class="section section--surface">
+      <header class="section-header reveal">
+        <h2 id="story-title" class="section-title">Kisah Perjalanan Kami</h2>
+      </header>
+      <div id="story-list" class="story-timeline"></div>
+    </section>
+
+    <!-- 8. Gallery -->
+    <section id="section-gallery" class="section">
+      <header class="section-header reveal">
+        <h2 id="gallery-title" class="section-title">Momen Bahagia</h2>
+      </header>
+      <div id="gallery-grid" class="gallery-grid"></div>
+      <div id="gallery-video-wrap" class="gallery-video" hidden></div>
+    </section>
+
+    <!-- 9. RSVP -->
+    <section id="section-rsvp" class="section section--surface">
+      <header class="section-header reveal">
+        <h2 id="rsvp-title" class="section-title">Konfirmasi Kehadiran</h2>
+        <p id="rsvp-subtitle" class="section-subtitle">Mohon konfirmasi kehadiran Anda untuk membantu kami mempersiapkan penyambutan terbaik.</p>
+      </header>
+      <div id="rsvp-saved-box" class="card" hidden>
+        <p class="form-feedback form-feedback--success">Terima kasih! Konfirmasi kehadiran Anda telah berhasil kami terima.</p>
+        <button id="btn-edit-rsvp" type="button" class="btn-outline">Ubah Konfirmasi</button>
+      </div>
+      <form id="form-rsvp" class="card stack-form reveal" novalidate>
+        <div>
+          <label class="field-label" for="rsvp-name">Nama Lengkap</label>
+          <input id="rsvp-name" name="name" type="text" maxlength="80" placeholder="Contoh: Budi Santoso" required>
+        </div>
+        <div>
+          <label class="field-label" for="rsvp-attendance">Konfirmasi Kehadiran</label>
+          <select id="rsvp-attendance" name="attendance" required>
+            <option value="hadir">Ya, Saya Akan Hadir</option>
+            <option value="tidak_hadir">Maaf, Belum Bisa Hadir</option>
+          </select>
+        </div>
+        <div id="rsvp-pax-wrap">
+          <label class="field-label" for="rsvp-pax">Jumlah Tamu yang Hadir</label>
+          <select id="rsvp-pax" name="pax"></select>
+        </div>
+        <div>
+          <label class="field-label" for="rsvp-notes">Catatan Tambahan (Opsional)</label>
+          <input id="rsvp-notes" name="notes" type="text" maxlength="200" placeholder="Contoh: Hadir pada sesi Resepsi">
+        </div>
+        <input id="rsvp-hp" class="hp-trap" name="hp_field" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div id="rsvp-feedback" class="form-feedback" hidden></div>
+        <button id="btn-submit-rsvp" type="submit">Kirim Konfirmasi</button>
+      </form>
+    </section>
+
+    <!-- 10. Guestbook -->
+    <section id="section-guestbook" class="section">
+      <header class="section-header reveal">
+        <h2 id="guestbook-title" class="section-title">Ucapan &amp; Doa Restu</h2>
+        <p id="guestbook-subtitle" class="section-subtitle">Tuliskan doa dan harapan terbaik Anda untuk mengiringi langkah baru kami.</p>
+      </header>
+      <form id="form-guestbook" class="card stack-form reveal" novalidate>
+        <div>
+          <label class="field-label" for="guestbook-name">Nama Anda</label>
+          <input id="guestbook-name" name="name" type="text" maxlength="80" placeholder="Tulis nama Anda" required>
+        </div>
+        <div>
+          <div class="field-row">
+            <label class="field-label" for="guestbook-message">Ucapan &amp; Doa</label>
+            <span id="guestbook-char-count" class="char-count">0/500</span>
+          </div>
+          <textarea id="guestbook-message" name="message" maxlength="500" placeholder="Tuliskan ucapan selamat dan doa restu..." required></textarea>
+        </div>
+        <input id="guestbook-hp" class="hp-trap" name="hp_field" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div id="guestbook-feedback" class="form-feedback" hidden></div>
+        <button id="btn-submit-guestbook" type="submit">Kirim Ucapan</button>
+      </form>
+      <div id="guestbook-list" class="guestbook-list"></div>
+      <div id="guestbook-load-more-wrap" class="load-more-wrap" hidden>
+        <button id="btn-load-more-guestbook" type="button" class="btn-outline">Lihat Ucapan Lainnya</button>
+      </div>
+    </section>
+
+    <!-- 11. Wedding Gift -->
+    <section id="section-gift" class="section section--surface">
+      <header class="section-header reveal">
+        <h2 id="gift-title" class="section-title">Tanda Kasih</h2>
+        <p id="gift-description" class="section-subtitle"></p>
+      </header>
+      <div id="gift-accounts" class="gift-list"></div>
+      <div id="gift-qris-wrap" class="card" style="text-align:center;margin-top:var(--space-4);" hidden>
+        <img id="gift-qris-img" class="gift-qris" src="" alt="QRIS Tanda Kasih" loading="lazy" decoding="async">
+      </div>
+      <div id="gift-address-wrap" class="card" style="margin-top:var(--space-4);" hidden></div>
+    </section>
+
+    <!-- 12. Closing -->
+    <footer id="section-closing" class="section closing">
+      <div id="closing-notes-wrap" class="card closing-notes reveal" hidden>
+        <strong id="closing-notes-title"></strong>
+        <ul id="closing-notes-list"></ul>
+      </div>
+      <h2 id="closing-title" class="section-title reveal">Terima Kasih</h2>
+      <p id="closing-message" class="section-subtitle reveal"></p>
+      <p id="closing-signature" class="closing__sig reveal"></p>
+      <p id="closing-families" class="section-subtitle reveal"></p>
+      <p id="closing-credit" class="closing__credit">Digital Wedding Invitation</p>
+    </footer>
+  </main>
+
+  <!-- Floating Audio Control -->
+  <div id="audio-control" hidden>
+    <button id="btn-audio-toggle" class="audio-fab" type="button" aria-label="Putar atau hentikan musik latar"></button>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="gallery-lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Pratinjau Foto Galeri" hidden>
+    <div>
+      <img id="lightbox-img" class="lightbox__img" src="" alt="">
+      <div class="lightbox__bar">
+        <button id="lightbox-prev" type="button" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35);">Sebelumnya</button>
+        <span id="lightbox-counter">1 / 1</span>
+        <button id="lightbox-next" type="button" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35);">Berikutnya</button>
+        <button id="lightbox-close" type="button" aria-label="Tutup">&times;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script defer src="./js/audio.js"></script>
+  <script defer src="./js/api.js"></script>
+  <script defer src="./js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="editorial">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pengirim Undangan WhatsApp</title>
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/wa-sender.css">
+</head>
+<body>
+  <main class="sender-wrap">
+    <header class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-3);flex-wrap:wrap;">
+        <div>
+          <p class="eyebrow" style="margin-bottom:4px;">WhatsApp Sender</p>
+          <h1 id="sender-heading" class="section-title" style="margin:0;">Pengirim Undangan WhatsApp</h1>
+        </div>
+        <a id="link-preview-invitation" class="btn btn-outline" href="../" target="_blank" rel="noopener noreferrer">Lihat Undangan</a>
+      </div>
+      <div class="sender-notice" style="margin-top:var(--space-4);">
+        Daftar tamu tersimpan 100% di <code>localStorage</code> browser perangkat ini dan tidak pernah dikirim ke server mana pun.
+      </div>
+    </header>
+
+    <section class="sender-stats" aria-label="Ringkasan Tamu">
+      <div class="stat-card"><span id="stat-total" class="stat-card__num">0</span><span class="stat-card__label">Total Tamu</span></div>
+      <div class="stat-card"><span id="stat-sent" class="stat-card__num">0</span><span class="stat-card__label">Sudah Dikirim</span></div>
+      <div class="stat-card"><span id="stat-pending" class="stat-card__num">0</span><span class="stat-card__label">Belum Dikirim</span></div>
+    </section>
+
+    <div class="sender-grid">
+      <section class="card">
+        <h2 class="section-title" style="font-size:var(--text-xl);">Tambah Daftar Tamu</h2>
+        <div style="margin-bottom:var(--space-3);">
+          <label class="field-label" for="sender-category-default">Kategori Default</label>
+          <select id="sender-category-default"></select>
+        </div>
+        <div>
+          <label class="field-label" for="sender-bulk-input">Tempel Nama &amp; Nomor (1 tamu per baris)</label>
+          <textarea id="sender-bulk-input" placeholder="Budi Santoso, 081234567890&#10;Ibu Siti Aminah, +6281122334455&#10;Keluarga Besar Bapak Hendra"></textarea>
+        </div>
+        <div class="sender-actions">
+          <button id="btn-add-guests" type="button">Tambahkan ke Daftar</button>
+          <label class="btn btn-outline" for="input-csv-file">Impor .CSV / .TXT</label>
+          <input id="input-csv-file" type="file" accept=".csv,.txt" hidden>
+          <button id="btn-import-contacts" type="button" class="btn-outline" hidden>Pilih Kontak HP</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title" style="font-size:var(--text-xl);">Template Pesan WhatsApp</h2>
+        <div style="margin-bottom:var(--space-3);">
+          <label class="field-label" for="template-category">Kategori Template</label>
+          <select id="template-category"></select>
+        </div>
+        <div>
+          <label class="field-label" for="template-editor">Isi Pesan (gunakan <code>{{nama}}</code> &amp; <code>{{link}}</code>)</label>
+          <textarea id="template-editor" style="min-height:170px;"></textarea>
+        </div>
+        <div class="sender-actions">
+          <button id="btn-reset-templates" type="button" class="btn-outline">Reset Template Bawaan</button>
+        </div>
+        <div style="margin-top:var(--space-3);font-size:var(--text-xs);color:var(--text-secondary);">
+          <strong>Pratinjau:</strong>
+          <p id="template-preview" style="white-space:pre-line;margin:6px 0 0;"></p>
+        </div>
+      </section>
+    </div>
+
+    <section class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-2);flex-wrap:wrap;margin-bottom:var(--space-3);">
+        <h2 class="section-title" style="font-size:var(--text-xl);margin:0;">Antrean Pengiriman</h2>
+        <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+          <button id="btn-export-csv" type="button" class="btn-outline">Ekspor CSV</button>
+          <button id="btn-clear-all" type="button" class="btn-outline">Hapus Semua</button>
+        </div>
+      </div>
+      <input id="search-guest" type="search" placeholder="Cari nama tamu...">
+      <div id="filter-tabs" class="tab-row">
+        <button type="button" class="tab-btn is-active" data-filter="all">Semua</button>
+        <button type="button" class="tab-btn" data-filter="pending">Belum Dikirim</button>
+        <button type="button" class="tab-btn" data-filter="sent">Sudah Dikirim</button>
+      </div>
+      <div id="guest-queue" class="guest-queue"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script defer src="../js/wa-sender.js"></script>
+</body>
+</html>
