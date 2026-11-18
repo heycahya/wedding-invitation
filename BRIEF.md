@@ -1,58 +1,47 @@
 # BRIEF.md — Konsep Desain & Data Undangan
 
-> Edit file ini setelah meng-clone template untuk menentukan **arahan desain** dan **isi undangan** project baru.  
-> Kamu cukup menulis dengan bahasa natural atau menempelkan teks mentah — AI akan menerjemahkannya ke token CSS, layout HTML/JS, format waktu ISO, dan `site/config.json`.  
-> **Jangan simpan** daftar nomor WA tamu maupun `spreadsheet_id` di file ini.
+> Edit file ini saja setelah meng-clone template.  
+> Tulis pakai bahasa biasa (atau paste teks undangan mentah) — AI yang akan menyusun Issue Detail, token CSS, layout HTML/JS, format ISO, dan `site/config.json`.
 
 ---
 
-## 1. Identitas URL & Fitur Aktif
+## 1. Info Dasar & Fitur
 
-- **Slug (`a-z`, `0-9`, `-`):** `nama-pasangan`
-- **URL Produksi (`https://.../`):** `https://example.pages.dev/`
-- **Endpoint Google Apps Script (`api.endpointUrl`):** *(isi jika sudah deploy `gas/Code.gs`, atau biarkan kosong sementara)*
-- **Fitur Opsional (`true` / `false`):**
+- **Slug / Nama Project (`a-z`, `0-9`, `-`):** `nama-pasangan`
+- **URL Live Website (`https://.../`):** `https://example.pages.dev/`
+- **URL Endpoint GAS RSVP/Guestbook (`api.endpointUrl`):** *(opsional — isi jika pakai backend Google Sheets eksternal)*
+- **Fitur Aktif (`true` / `false`):**
   - `quote`: `true` | `countdown`: `true` | `story`: `true` | `gallery`: `true`
   - `rsvp`: `true` *(maxPax: 4)* | `guestbook`: `true` | `gift`: `true` | `audio`: `true`
 
 ---
 
-## 2. Arahan Desain Visual *(Ganti Bebas Tiap Project)*
+## 2. Arahan Desain Visual *(Yang Diubah Tiap Project)*
 
-- **Konsep / Mood Utama:** `[contoh: Editorial Ivory Minimalis / Heritage Jawa Gelap & Emas / Botanical Sage Segar / Monokrom Tipografi Modern]`
-- **Gaya Layout & Komposisi:** `[contoh: Hero split-screen dengan tipografi serif besar, kartu acara model timeline vertikal, galeri grid asimetris 2 kolom, bingkai foto arch kubah]`
-- **Palet Warna yang Diinginkan:** `[contoh: Latar krem hangat #FAF8F5, surface #F2ECE4, teks charcoal #1E1B18, aksen bronze #8C6D53 — atau deskripsi warna bebas]`
-- **Tipografi (Maks 2 Font Google Fonts):** `[contoh: Display serif dramatis (Cormorant Garamond / Instrument Serif) + Sans bersih (Plus Jakarta Sans / Inter)]`
-- **Nuansa Animasi & Ornamen:** `[contoh: Transisi tenang & khidmat, garis tipis hairline, monogram inisial, tanpa ornamen bunga tempelan]`
-- **Catatan Khusus UI (Opsional):** `[tulis preferensi tambahan apa pun di sini]`
-
----
-
-## 3. Data Undangan *(Boleh Paste Teks Mentah)*
-
-- **Nama Panggilan Pasangan & Urutan Tampil:** `[Mempelai 1 & Mempelai 2 — mis. Nama Wanita & Nama Pria]`
-- **Salam Pembuka & Kutipan (Jika aktif):**
-  - Tradisi/Nuansa: `[Islami / Kristiani / Nasional / Adat]`
-  - Kutipan & Sumber: `[isi atau tulis: pakai kutipan standar]`
-- **Mempelai 1:**
-  - Nama Lengkap & Gelar: `[...]`
-  - Keterangan & Nama Orang Tua: `[Putri/Putra ke-... dari Bapak ... & Ibu ...]`
-  - Instagram (opsional): `[...]`
-- **Mempelai 2:**
-  - Nama Lengkap & Gelar: `[...]`
-  - Keterangan & Nama Orang Tua: `[Putra/Putri ke-... dari Bapak ... & Ibu ...]`
-  - Instagram (opsional): `[...]`
-- **Rangkaian Acara (Minimal 1):**
-  - Acara 1: `[Nama acara, hari & tanggal, jam mulai-selesai + WIB/WITA/WIT, nama venue, alamat lengkap, link Google Maps]`
-  - Acara 2 (opsional): `[...]`
-- **Love Story (Jika aktif):** `[2–4 momen singkat: periode, judul, cerita 1–2 kalimat]`
-- **Galeri (Jika aktif):** `[Jumlah foto & keterangan singkat, videoUrl opsional]`
-- **Wedding Gift (Jika aktif):** `[Nama bank/e-wallet, no rekening, atas nama; alamat kado fisik & QRIS jika ada]`
-- **Penutup & Catatan Tambahan:** `[Dresscode/catatan tamu, nama keluarga besar]`
-- **Judul & Deskripsi Share WhatsApp (OG):** `[judul <= 70 char, deskripsi <= 160 char]`
+- **Mood / Konsep Utama:** `[misal: Editorial Ivory Minimalis / Adat Jawa Dark Gold / Botanical Sage / Modern Typographic]`
+- **Gaya Layout & Komposisi:** `[misal: Hero full-bleed dengan scrim bawah, kartu acara model split editorial, foto bingkai arch]`
+- **Palet Warna:** `[tulis kode hex atau deskripsi suasana warna yang diinginkan]`
+- **Tipografi (Maks 2 Font Google Fonts):** `[misal: Cormorant Garamond + Plus Jakarta Sans]`
+- **Animasi & Detail Ornamen:** `[misal: Tenang & halus, garis hairline minimalis, tanpa bunga tempelan]`
+- **Catatan UI Tambahan (Opsional):** `[...]`
 
 ---
 
-## 4. Aset di `site/assets/`
+## 3. Isi Data Undangan *(Boleh Paste Teks Mentah)*
+
+- **Nama Panggilan & Urutan Tampil:** `[Mempelai 1 & Mempelai 2]`
+- **Salam Pembuka & Kutipan:** `[Islami / Kristiani / Nasional / Adat — atau tulis isi kutipan]`
+- **Mempelai 1:** `[Nama lengkap & gelar, anak ke-..., nama Bapak & Ibu, IG opsional]`
+- **Mempelai 2:** `[Nama lengkap & gelar, anak ke-..., nama Bapak & Ibu, IG opsional]`
+- **Acara (Minimal 1):** `[Nama acara, hari/tanggal, jam + zona waktu WIB/WITA/WIT, nama tempat, alamat, link Google Maps]`
+- **Love Story (Jika aktif):** `[2–4 momen singkat]`
+- **Galeri (Jika aktif):** `[Daftar foto & videoUrl opsional]`
+- **Wedding Gift (Jika aktif):** `[Bank/e-wallet, nomor rekening, atas nama; alamat kado fisik & QRIS opsional]`
+- **Penutup & Catatan Tamu:** `[Dresscode / pesan penutup / nama keluarga besar]`
+- **Teks Share WhatsApp (OG):** `[Judul <= 70 karakter, Deskripsi <= 160 karakter]`
+
+---
+
+## 4. Aset Media (`site/assets/`)
 - `og-image.jpg` (WAJIB `.jpg` sRGB, `1200×630`, `< 250 KB`)
-- `cover.webp`, `hero.webp` (`< 150 KB`), `bride.webp`, `groom.webp` (`< 80 KB`), `gallery-01.webp`.. (`< 120 KB`), `bgm.mp3` (`< 2 MB`)
+- `cover.webp`, `hero.webp` (`< 150 KB`), `bride/groom.webp` (`< 80 KB`), `gallery-*.webp` (`< 120 KB`), `bgm.mp3` (`< 2 MB`)

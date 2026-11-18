@@ -1,28 +1,26 @@
-# Wedding Invitation — Static Web Template
+# Wedding Invitation — Website Template
 
-Template repository siap-clone untuk membuat website undangan pernikahan digital (*HTML5, CSS3 Custom Properties, Vanilla JS ES6+, Cloudflare Pages, Google Apps Script + Google Sheets*).  
-Seluruh kerangka website (`site/`) dan backend (`gas/Code.gs`) sudah ter-scaffold utuh dan siap jalan — setiap project baru cukup mengganti **konsep desain & data acara**.
-
----
-
-## Cara Pakai Setelah Clone
-
-1. **Isi Brief Desain & Data:** Buka [`BRIEF.md`](./BRIEF.md) dan isi konsep visual serta data undangan.
-2. **Generate Issue & Desain Baru:** Buka [`PROMPTS.md`](./PROMPTS.md), salin prompt yang sesuai (bisa bertahap **Issue Detail → Implementasi** atau langsung **One-Shot**) dan kirim ke AI agent.
-3. **Preview & Fix UI di Termux:**
-   ```bash
-   python3 -m http.server 8080 --directory site
-   ```
-   Buka `http://localhost:8080/?to=Tamu+Undangan` dan `http://localhost:8080/kirim/` di browser HP. Gunakan **Prompt Fix UI** bila ada tampilan yang ingin dipoles.
-4. **Optimasi Aset & Deploy:** Masukkan media terkompresi ke `site/assets/`, deploy `gas/Code.gs` ke Google Apps Script, dan hubungkan folder `site/` ke Cloudflare Pages.
+Template website undangan pernikahan digital siap pakai (*HTML5, CSS3 Custom Properties, Vanilla JS ES6+ — zero framework, zero build step*).  
+Repo ini **100% fokus untuk website statis yang langsung live** di `site/` (Cloudflare Pages). Jika memakai RSVP & Ucapan online, `site/config.json` cukup diisi URL Web App Google Apps Script eksternal (`api.endpointUrl`).
 
 ---
 
-## Struktur Utama
+## Cara Pakai (3 Langkah)
 
-- [`AGENTS.md`](./AGENTS.md) — Aturan mutlak, arsitektur, dan mode eksekusi AI.
-- [`BRIEF.md`](./BRIEF.md) — Tempat menyesuaikan desain visual & data tiap project.
-- [`PROMPTS.md`](./PROMPTS.md) — Template prompt siap-paste.
-- [`.agent/TECH-SPEC.md`](./.agent/TECH-SPEC.md) — Kontrak baku `config.json`, API GAS, Google Sheets, dan `localStorage`.
-- [`site/`](./site/) — Website statis siap publikasi (`index.html`, `config.json`, `css/`, `js/`, `icons/`, `kirim/`, `assets/`).
-- [`gas/Code.gs`](./gas/Code.gs) — Backend Google Apps Script (RSVP & Guestbook).
+1. **Isi `BRIEF.md`:** Tulis konsep desain yang diinginkan (tema, warna, font, gaya layout) dan tempel data acaranya.
+2. **Copy Prompt dari `PROMPTS.md`:**
+   - Kirim **Prompt 1 (Buat Issue)** lalu **Prompt 2 (Kerjakan Desain)** — atau pakai **Prompt One-Shot** jika ingin sekali jalan.
+   - Setelah dicek di browser HP, pakai **Prompt 3 (Fix UI)** bila ada tampilan yang ingin dipoles.
+3. **Preview & Live:**
+   - Preview lokal di Termux: `python3 -m http.server 8080 --directory site`
+   - Simpan foto/audio terkompresi di `site/assets/`, lalu deploy folder `site/` ke Cloudflare Pages.
+
+---
+
+## Peta File
+
+- [`BRIEF.md`](./BRIEF.md) — **Yang kamu edit tiap project** (desain & isi undangan).
+- [`PROMPTS.md`](./PROMPTS.md) — **Prompt siap-copy** untuk AI.
+- [`AGENTS.md`](./AGENTS.md) — Aturan otomatis untuk AI (*jangan diedit kecuali ubah aturan template*).
+- [`.agent/TECH-SPEC.md`](./.agent/TECH-SPEC.md) — Kontrak teknis `config.json`, DOM IDs, endpoint GAS, dan `localStorage`.
+- [`site/`](./site/) — Folder website yang siap di-hosting.
