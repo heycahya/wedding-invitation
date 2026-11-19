@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="editorial">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,15 +11,15 @@
 </head>
 <body>
   <main class="sender-wrap">
-    <header class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-3);flex-wrap:wrap;">
+    <header class="sender-header">
+      <div class="sender-header__top">
         <div>
-          <p class="eyebrow" style="margin-bottom:4px;">WhatsApp Sender</p>
-          <h1 id="sender-heading" class="section-title" style="margin:0;">Pengirim Undangan WhatsApp</h1>
+          <p class="eyebrow">WhatsApp Sender</p>
+          <h1 id="sender-heading" class="section-title">Pengirim Undangan WhatsApp</h1>
         </div>
         <a id="link-preview-invitation" class="btn btn-outline" href="../" target="_blank" rel="noopener noreferrer">Lihat Undangan</a>
       </div>
-      <div class="sender-notice" style="margin-top:var(--space-4);">
+      <div class="sender-notice">
         Daftar tamu tersimpan 100% di <code>localStorage</code> browser perangkat ini dan tidak pernah dikirim ke server mana pun.
       </div>
     </header>
@@ -31,13 +31,13 @@
     </section>
 
     <div class="sender-grid">
-      <section class="card">
-        <h2 class="section-title" style="font-size:var(--text-xl);">Tambah Daftar Tamu</h2>
-        <div style="margin-bottom:var(--space-3);">
+      <section class="sender-panel">
+        <h2 class="section-title">Tambah Daftar Tamu</h2>
+        <div class="sender-field">
           <label class="field-label" for="sender-category-default">Kategori Default</label>
           <select id="sender-category-default"></select>
         </div>
-        <div>
+        <div class="sender-field">
           <label class="field-label" for="sender-bulk-input">Tempel Nama &amp; Nomor (1 tamu per baris)</label>
           <textarea id="sender-bulk-input" placeholder="Budi Santoso, 081234567890&#10;Ibu Siti Aminah, +6281122334455&#10;Keluarga Besar Bapak Hendra"></textarea>
         </div>
@@ -49,30 +49,30 @@
         </div>
       </section>
 
-      <section class="card">
-        <h2 class="section-title" style="font-size:var(--text-xl);">Template Pesan WhatsApp</h2>
-        <div style="margin-bottom:var(--space-3);">
+      <section class="sender-panel">
+        <h2 class="section-title">Template Pesan WhatsApp</h2>
+        <div class="sender-field">
           <label class="field-label" for="template-category">Kategori Template</label>
           <select id="template-category"></select>
         </div>
-        <div>
+        <div class="sender-field">
           <label class="field-label" for="template-editor">Isi Pesan (gunakan <code>{{nama}}</code> &amp; <code>{{link}}</code>)</label>
-          <textarea id="template-editor" style="min-height:170px;"></textarea>
+          <textarea id="template-editor" class="template-editor"></textarea>
         </div>
         <div class="sender-actions">
           <button id="btn-reset-templates" type="button" class="btn-outline">Reset Template Bawaan</button>
         </div>
-        <div style="margin-top:var(--space-3);font-size:var(--text-xs);color:var(--text-secondary);">
+        <div class="sender-preview">
           <strong>Pratinjau:</strong>
-          <p id="template-preview" style="white-space:pre-line;margin:6px 0 0;"></p>
+          <p id="template-preview" class="sender-preview__text"></p>
         </div>
       </section>
     </div>
 
-    <section class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-2);flex-wrap:wrap;margin-bottom:var(--space-3);">
-        <h2 class="section-title" style="font-size:var(--text-xl);margin:0;">Antrean Pengiriman</h2>
-        <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+    <section class="sender-panel">
+      <div class="sender-toolbar">
+        <h2 class="section-title">Antrean Pengiriman</h2>
+        <div class="sender-toolbar__actions">
           <button id="btn-export-csv" type="button" class="btn-outline">Ekspor CSV</button>
           <button id="btn-clear-all" type="button" class="btn-outline">Hapus Semua</button>
         </div>

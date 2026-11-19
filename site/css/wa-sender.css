@@ -1,16 +1,1 @@
-/* Utilitas Halaman WA Sender (/kirim/) */
-.sender-wrap{width:100%;max-width:var(--sender-max-width);margin:0 auto;padding:var(--space-6) var(--space-4) var(--space-12);display:grid;gap:var(--space-5)}
-.sender-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-3)}
-.stat-card{background:var(--bg-elevated);border:var(--border-thin);border-radius:var(--radius-md);padding:var(--space-4);text-align:center}
-.stat-card__num{display:block;font-family:var(--font-display);font-size:var(--text-2xl);font-weight:600}
-.stat-card__label{font-size:var(--text-xs);color:var(--text-muted)}
-.sender-notice{background:var(--status-warning-bg);color:var(--status-warning-text);border:1px solid var(--status-warning-border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:var(--text-xs)}
-.sender-grid,.guest-queue{display:grid;gap:var(--space-4)}
-@media(min-width:768px){.sender-grid{grid-template-columns:1fr 1fr;align-items:start}}
-.sender-actions,.tab-row{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-3)}
-.tab-btn{background:var(--bg-surface);color:var(--text-primary);border:var(--border-thin)}
-.tab-btn.is-active{background:var(--accent-primary);color:var(--accent-contrast);border-color:var(--accent-primary)}
-.guest-row{display:grid;gap:var(--space-3);padding:var(--space-4);background:var(--bg-elevated);border:var(--border-thin);border-radius:var(--radius-md)}
-.guest-row__top{display:flex;justify-content:space-between;align-items:start;gap:var(--space-2)}
-.badge{display:inline-block;padding:2px 8px;border-radius:var(--radius-full);font-size:var(--text-xs);background:var(--bg-surface);color:var(--text-secondary)}
-.badge--sent{background:var(--status-success-bg);color:var(--status-success-text)}
+/* Kosongkan template: isi styling halaman utilitas WA Sender (/kirim/) max-width 720px saat Mode 2. */

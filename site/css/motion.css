@@ -1,17 +1,1 @@
-/* Animasi GPU-only (transform & opacity) + reduced motion */
-:root{
-  --duration-instant:150ms;--duration-fast:300ms;--duration-normal:650ms;--duration-slow:1000ms;
-  --ease-out-quart:cubic-bezier(.25,1,.5,1);--ease-in-out-cubic:cubic-bezier(.65,0,.35,1);
-}
-.cover-gate.is-opening{transform:translate3d(0,-100%,0);opacity:0;pointer-events:none;transition:transform var(--duration-slow) var(--ease-in-out-cubic),opacity var(--duration-slow) var(--ease-out-quart)}
-.reveal{opacity:0;transform:translate3d(0,24px,0);transition:opacity var(--duration-normal) var(--ease-out-quart),transform var(--duration-normal) var(--ease-out-quart);will-change:opacity,transform}
-.reveal.is-visible{opacity:1;transform:translate3d(0,0,0)}
-.reveal-delay-1{transition-delay:100ms}.reveal-delay-2{transition-delay:200ms}.reveal-delay-3{transition-delay:300ms}
-@keyframes spin-slow{to{transform:rotate(360deg)}}
-.audio-fab.is-playing svg{animation:spin-slow 8s linear infinite}
-.skeleton{height:72px;border-radius:var(--radius-md);background:var(--bg-surface);opacity:.7}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:150ms!important;scroll-behavior:auto!important}
-  .reveal{opacity:1!important;transform:none!important}
-  .cover-gate.is-opening{transform:none!important;opacity:0!important}
-}
+/* Kosongkan template: isi animasi GPU-only (transform & opacity), Cover Gate transition, .reveal & prefers-reduced-motion saat Mode 2. */

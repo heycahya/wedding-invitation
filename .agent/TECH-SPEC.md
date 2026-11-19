@@ -6,6 +6,7 @@ Referensi kontrak antara HTML, CSS, JS, `config.json`, `localStorage`, dan endpo
 
 ## 1. Struktur & Path `site/`
 - Root publikasi Cloudflare Pages: `site/` (Build command kosong).
+- Pada template awal, `site/css/*` dan `site/js/*` sengaja dikosongkan dan diisi penuh saat Mode 2 mengikuti kontrak DOM ID & skema di bawah.
 - Gunakan path relatif (`./css/...`, `./js/...`, `./config.json`, `./assets/...` dari `site/index.html`; `../` dari `site/kirim/index.html`) agar berjalan di root domain maupun subpath.
 
 ---
@@ -48,7 +49,19 @@ Gunakan persis nama key berikut:
 
 ---
 
-## 5. Aset, Performa & Audit Wajib
+## 5. Perilaku Wajib Modul JS (`site/js/*`)
+- **`app.js`:**
+  - Parse `?to=` (trim, maks 60 char via `textContent`; fallback `cover.defaultGuestLabel`); pre-fill ke `#rsvp-name` dan `#guestbook-name` jika `?to=` ada.
+  - Fetch `./config.json` dengan fallback `#load-error` + `#btn-retry-load`; terapkan `theme.overrides`; sembunyikan section `features.*: false` atau data kosong.
+  - Cover Gate: klik `#btn-open-invitation` membuka `body.is-locked`, panggil `play()` audio, transisi `.is-opening` lalu `hidden`.
+  - Couple sesuai `couple.order` + fallback monogram inisial; Events + Google Calendar UTC URL; Countdown 3 kondisi (sebelum, `< 24 jam` berlangsung, `>= 24 jam` selesai); Gallery Lightbox (`Esc`, Prev/Next, klik backdrop); Gift copy clipboard (`navigator.clipboard` + fallback `execCommand`); `IntersectionObserver` one-time reveal.
+- **`audio.js`:** `<audio preload="none" loop>`, tangkap `.play().catch()` secara senyap, dan event `visibilitychange` (auto-pause saat tab/app ditinggalkan, lanjutkan saat kembali hanya bila sebelumnya playing).
+- **`api.js`:** Sembunyikan `pax` (`0`) saat `tidak_hadir`, client cooldown 30 detik, non-blocking `GET` Guestbook dengan skeleton/empty/retry state, optimistic prepend, paginasi *Load More*, dan selalu render ucapan lewat `textContent`.
+- **`wa-sender.js`:** Parser paste multi-baris & `.csv/.txt`, normalisasi nomor (`08...`/`+628...` → `628...`), template editor (`{{nama}}`, `{{link}}`) + reset, Contact Picker opsional (`'contacts' in navigator && 'ContactsManager' in window`), ekspor CSV aman formula-injection, dan 0 request jaringan daftar tamu.
+
+---
+
+## 6. Aset, Performa & Audit Wajib
 - Total CSS + JS di `site/` **< 50 KB** (uncompressed).
 - `og-image.jpg` `.jpg` sRGB `1200×630` `< 250 KB`, WebP `< 150 KB` (`-strip` EXIF), MP3 `< 2 MB`.
 - Kanvas `480px` (`720px` untuk `/kirim/`), aman di `360px`, input `>= 16px`, tap `>= 44px`, animasi `transform`/`opacity` + `prefers-reduced-motion`.
