@@ -1,7 +1,7 @@
 # AGENTS.md — Aturan & Panduan AI
 
 Repo ini adalah **pre-scaffolded static website template** undangan pernikahan digital (`site/`).  
-Seluruh plumbing teknis di `site/` sudah tersedia. Tugas utama di tiap project adalah **merombak desain visual & menyinkronkan data** berdasarkan `BRIEF.md`.
+Seluruh plumbing teknis di `site/` sudah tersedia. Tugas utama di tiap project adalah **merombak desain visual & menyinkronkan data** berdasarkan `.agent/customize/design.md` dan `.agent/customize/data.md`.
 
 ---
 
@@ -17,9 +17,9 @@ Seluruh plumbing teknis di `site/` sudah tersedia. Tugas utama di tiap project a
 
 ## Pemisahan Lapisan Kode
 
-- **Lapisan Desain & Konten *(Wajib Dirombak Sesuai `BRIEF.md`)*:**
+- **Lapisan Desain & Konten *(Wajib Dirombak Sesuai `.agent/customize/`)*:**
   - `site/css/tokens.css`, `site/css/sections.css`, `site/css/motion.css`, struktur visual `<main>` & `<head>` OG di `site/index.html`, render layout di `site/js/app.js`, dan `site/config.json`.
-  - Jangan hanya ganti 2–3 warna hex jika `BRIEF.md` meminta tema berbeda — ubah komposisi layout, tipografi, framing foto, ritme spacing, dan ornamentasi SVG ringan (`< 1 KB`).
+  - Jangan hanya ganti 2–3 warna hex jika `.agent/customize/design.md` meminta tema berbeda — ubah komposisi layout, tipografi, framing foto, ritme spacing, dan ornamentasi SVG ringan (`< 1 KB`).
 - **Lapisan Plumbing *(Pertahankan Kontrak di `.agent/TECH-SPEC.md`)*:**
   - `site/js/api.js`, `site/js/audio.js`, `site/js/wa-sender.js`, `site/kirim/index.html`, `site/css/wa-sender.css`, dan `site/css/base.css` (`max-width: 480px`, `input >= 16px`, tap target `>= 44px`, no horizontal scroll di `360px`).
 
@@ -27,6 +27,8 @@ Seluruh plumbing teknis di `site/` sudah tersedia. Tugas utama di tiap project a
 
 ## 3 Mode Kerja
 
-1. **Mode 1 — Buat Issue Detail:** Baca `BRIEF.md` + `.agent/TECH-SPEC.md` → tulis blueprint visual per section (warna, font, layout, motion GPU-only) + pemetaan `config.json` & OG statis ke `.agent/issues/01-design.md`. Jangan edit `site/` pada mode ini.
-2. **Mode 2 — Eksekusi Desain & Konten:** Terapkan `.agent/issues/01-design.md` (atau langsung `BRIEF.md` pada One-Shot) ke `site/`. Pertahankan plumbing, validasi JSON `site/config.json`, pastikan total `.css` + `.js` di `site/` `< 50 KB` dan `0` pemakaian `innerHTML` pada data user, lalu laporkan hasilnya jujur.
+1. **Mode 1 — Buat Issue Detail:** Baca `.agent/customize/design.md`, `.agent/customize/data.md`, dan `.agent/TECH-SPEC.md` → tulis blueprint visual per section (warna, font, layout, motion GPU-only) + pemetaan `config.json` & OG statis ke `.agent/issues/01-design.md`. Jangan edit `site/` pada mode ini.
+2. **Mode 2 — Eksekusi Desain & Konten:** Terapkan `.agent/issues/01-design.md` (atau langsung `.agent/customize/` pada One-Shot) ke `site/`. Pertahankan plumbing, validasi JSON `site/config.json`, pastikan total `.css` + `.js` di `site/` `< 50 KB` dan `0` pemakaian `innerHTML` pada data user, lalu laporkan hasilnya jujur.
 3. **Mode 3 — Fix UI Cepat & Debug:** Untuk poles tampilan, edit CSS/HTML/copy langsung sambil menjaga `tokens.css`, DOM IDs, `360px` anti-overflow, GPU-only motion (`prefers-reduced-motion`), dan `< 50 KB`. Jika ada error console/CORS/OG/layout, lakukan Root Cause Analysis pada file terkait sebelum memperbaiki kode.
+
+> Jika user langsung memberi arahan singkat (*"bikinin sesuai customize"* / *"bikinin sesuai arahan"*) tanpa menyebut mode, jalankan **Mode 1** terlebih dahulu (tulis `.agent/issues/01-design.md`) kecuali user meminta langsung dikerjakan sekaligus (*One-Shot*).

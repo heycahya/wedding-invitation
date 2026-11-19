@@ -7,10 +7,13 @@ Repo ini **100% fokus untuk website statis yang langsung live** di `site/` (Clou
 
 ## Cara Pakai (3 Langkah)
 
-1. **Isi `BRIEF.md`:** Tulis konsep desain yang diinginkan (tema, warna, font, gaya layout) dan tempel data acaranya.
-2. **Copy Prompt dari `PROMPTS.md`:**
-   - Kirim **Prompt 1 (Buat Issue)** lalu **Prompt 2 (Kerjakan Desain)** — atau pakai **Prompt One-Shot** jika ingin sekali jalan.
-   - Setelah dicek di browser HP, pakai **Prompt 3 (Fix UI)** bila ada tampilan yang ingin dipoles.
+1. **Isi `.agent/customize/`:**
+   - [`.agent/customize/design.md`](./.agent/customize/design.md) — Tulis konsep desain, palet warna, tipografi, dan gaya layout.
+   - [`.agent/customize/data.md`](./.agent/customize/data.md) — Isi atau tempel data acara, mempelai, fitur aktif, dan aset media.
+2. **Minta AI Mengerjakan:**
+   - **Buat Issue dulu:** *"Buat issue detail dari `.agent/customize/` sesuai `AGENTS.md`"* → cek `.agent/issues/01-design.md` → lanjut *"Kerjakan issue 01-design.md"*.
+   - **Atau langsung 1x jalan:** *"Buat issue detail dari `.agent/customize/` lalu langsung kerjakan desainnya ke `site/`"*.
+   - **Poles tampilan:** *"Fix UI: [sebutkan bagian yang ingin diubah]"*.
 3. **Preview & Live:**
    - Preview lokal di Termux: `python3 -m http.server 8080 --directory site`
    - Simpan foto/audio terkompresi di `site/assets/`, lalu deploy folder `site/` ke Cloudflare Pages.
@@ -19,8 +22,8 @@ Repo ini **100% fokus untuk website statis yang langsung live** di `site/` (Clou
 
 ## Peta File
 
-- [`BRIEF.md`](./BRIEF.md) — **Yang kamu edit tiap project** (desain & isi undangan).
-- [`PROMPTS.md`](./PROMPTS.md) — **Prompt siap-copy** untuk AI.
-- [`AGENTS.md`](./AGENTS.md) — Aturan otomatis untuk AI (*jangan diedit kecuali ubah aturan template*).
+- [`AGENTS.md`](./AGENTS.md) — Aturan otomatis untuk AI (`NEVER` rules & 3 mode kerja).
+- [`.agent/customize/design.md`](./.agent/customize/design.md) — **Yang kamu edit tiap project:** arahan desain visual.
+- [`.agent/customize/data.md`](./.agent/customize/data.md) — **Yang kamu edit tiap project:** data undangan & fitur.
 - [`.agent/TECH-SPEC.md`](./.agent/TECH-SPEC.md) — Kontrak teknis `config.json`, DOM IDs, endpoint GAS, dan `localStorage`.
-- [`site/`](./site/) — Folder website yang siap di-hosting.
+- [`site/`](./site/) — Folder website siap hosting (`index.html`, `config.json`, `css/`, `js/`, `icons/`, `kirim/`, `assets/`).
