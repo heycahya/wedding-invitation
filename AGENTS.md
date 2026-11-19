@@ -20,7 +20,8 @@ Di repo template ini, kerangka semantik HTML (`site/index.html`, `site/kirim/ind
 - **Kerangka & Konfigurasi (Sudah Ada di Template):**
   - `site/index.html` & `site/kirim/index.html` — perbarui Google Fonts, static `<meta property="og:*">`, serta class visual sesuai desain tanpa menghilangkan DOM IDs wajib di `.agent/TECH-SPEC.md`.
   - `site/config.json` — sinkronkan dengan `.agent/customize/data.md`.
-  - `site/icons/*.svg` — ikon monokrom ringan `< 1 KB`.
+  - `site/icons/*.svg` — starter ikon opsional (bebas diganti/disesuaikan per desain atau pakai inline SVG `< 1 KB`).
+  - `site/img/` & `site/assets/` — folder gambar (`./img/...`) dan audio (`./assets/...`).
 - **Lapisan Desain CSS *(Isi Penuh dari Nol Sesuai `.agent/customize/design.md`)*:**
   - `site/css/tokens.css`, `site/css/sections.css`, `site/css/motion.css` (GPU-only `transform`/`opacity` + `prefers-reduced-motion`), dan `site/css/base.css` (kanvas max `480px`, `input >= 16px`, tap target `>= 44px`, anti-overflow `360px`).
 - **Lapisan Fungsional JS & WA Sender *(Isi Sesuai Kontrak `.agent/TECH-SPEC.md`)*:**

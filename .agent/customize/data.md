@@ -27,14 +27,14 @@
 
 ## 5. Konten Opsional & Penutup
 - **Love Story (Jika aktif):** `[2–4 momen singkat: periode, judul, cerita 1–2 kalimat]`
-- **Galeri (Jika aktif):** `[Daftar foto di site/assets/ & videoUrl opsional]`
+- **Galeri (Jika aktif):** `[Daftar foto di site/img/ & videoUrl opsional]`
 - **Wedding Gift (Jika aktif):** `[Bank/e-wallet, nomor rekening, atas nama; alamat kado fisik & QRIS opsional]`
 - **Penutup & Catatan Tamu:** `[Dresscode / informasi tambahan / nama keluarga besar]`
 - **Teks Share WhatsApp (OG):** `[Judul <= 70 karakter, Deskripsi <= 160 karakter]`
 
-## 6. Aset Media (`site/assets/`)
-- [ ] `og-image.jpg` (WAJIB `.jpg` sRGB, `1200×630`, `< 250 KB`)
-- [ ] `cover.webp`, `hero.webp` (`< 150 KB`)
-- [ ] `bride.webp`, `groom.webp` (`< 80 KB`, opsional)
-- [ ] `gallery-01.webp`.. (`< 120 KB`/foto, opsional)
-- [ ] `bgm.mp3` (`< 2 MB`, opsional)
+## 6. Gambar (`site/img/`) & Audio (`site/assets/`)
+- [ ] `site/img/og-image.jpg` (WAJIB `.jpg` sRGB, `1200×630`, `< 250 KB`)
+- [ ] `site/img/cover.webp`, `site/img/hero.webp` (`< 150 KB`)
+- [ ] `site/img/bride.webp`, `site/img/groom.webp` (`< 80 KB`, opsional)
+- [ ] `site/img/gallery-01.webp`.. (`< 120 KB`/foto, opsional)
+- [ ] `site/assets/bgm.mp3` (`< 2 MB`, opsional)

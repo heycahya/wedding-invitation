@@ -16,7 +16,7 @@ Repo ini menyediakan **kerangka HTML semantik** (`site/index.html`, `site/kirim/
    - **Poles tampilan:** *"Fix UI: [sebutkan bagian yang ingin diubah]"*.
 3. **Preview & Live:**
    - Setelah Mode 2 selesai mengisi CSS & JS, preview di Termux: `python3 -m http.server 8080 --directory site`
-   - Simpan foto/audio terkompresi di `site/assets/`, lalu deploy folder `site/` ke Cloudflare Pages.
+   - Simpan foto di `site/img/` dan audio di `site/assets/`, lalu deploy folder `site/` ke Cloudflare Pages.
 
 ---
 
@@ -27,4 +27,4 @@ Repo ini menyediakan **kerangka HTML semantik** (`site/index.html`, `site/kirim/
 - [`.agent/customize/data.md`](./.agent/customize/data.md) — **Yang kamu edit tiap project:** data undangan & fitur.
 - [`.agent/skills/`](./.agent/skills/) — Panduan UI (`anti-ai-slop.md`, `ui-layout-patterns.md`, `mobile-webview-qa.md`).
 - [`.agent/TECH-SPEC.md`](./.agent/TECH-SPEC.md) — Kontrak teknis `config.json`, DOM IDs, endpoint GAS, dan `localStorage`.
-- [`site/`](./site/) — Kerangka HTML siap isi (`index.html`, `config.json`, `css/` kosong, `js/` kosong, `icons/`, `kirim/`, `assets/`).
+- [`site/`](./site/) — Kerangka HTML siap isi (`index.html`, `config.json`, `css/` kosong, `js/` kosong, `icons/`, `img/`, `assets/`, `kirim/`).

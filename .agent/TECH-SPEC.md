@@ -7,7 +7,7 @@ Referensi kontrak antara HTML, CSS, JS, `config.json`, `localStorage`, dan endpo
 ## 1. Struktur & Path `site/`
 - Root publikasi Cloudflare Pages: `site/` (Build command kosong).
 - Pada template awal, `site/css/*` dan `site/js/*` sengaja dikosongkan dan diisi penuh saat Mode 2 mengikuti kontrak DOM ID & skema di bawah.
-- Gunakan path relatif (`./css/...`, `./js/...`, `./config.json`, `./assets/...` dari `site/index.html`; `../` dari `site/kirim/index.html`) agar berjalan di root domain maupun subpath.
+- Gunakan path relatif (`./css/...`, `./js/...`, `./img/...`, `./assets/...`, `./config.json` dari `site/index.html`; `../` dari `site/kirim/index.html`) agar berjalan di root domain maupun subpath.
 
 ---
 
