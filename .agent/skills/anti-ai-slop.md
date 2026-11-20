@@ -50,7 +50,7 @@ Teknik berikut **ditolak** jika sekadar hiasan tanpa alasan di `.agent/issues/01
 
 - **Hierarki Tipografi Tegas:** `h1` nama pasangan minimal `2.5x` ukuran teks body; font *script* keriting tidak boleh dipakai untuk paragraf panjang atau nama lengkap bergelar; angka Countdown, jam, dan rekening pakai `tabular-nums`.
 - **Framing Foto Aman:** Foto wajah/potret memakai `object-fit: cover` dan `object-position: center 25%` agar dahi/kepala tidak terpotong.
-- **Konsistensi Visual:** Ketebalan garis (`1px`), gaya radius sudut, dan spacing antar-section memakai token di `site/css/tokens.css`, serta seluruh tombol punya state `hover`, `active`, dan `disabled` yang jelas.
+- **Konsistensi Visual:** Ketebalan garis (`1px`), gaya radius sudut, dan spacing antar-section memakai CSS custom properties (`:root`) di `site/css/base.css`, serta seluruh tombol punya state `hover`, `active`, dan `disabled` yang jelas.
 
 ---
 

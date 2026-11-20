@@ -1,1 +1,1 @@
-/* Kosongkan template: isi integrasi POST text/plain & GET Guestbook ke api.endpointUrl + cooldown 30s + textContent saat Mode 2. */
+/* Kosongkan template: isi integrasi POST text/plain & GET Guestbook ke data-api-url + cooldown 30s + textContent saat Mode 2. */

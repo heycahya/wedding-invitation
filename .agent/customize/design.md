@@ -1,7 +1,7 @@
 # DESIGN.md — Modern Architectural Editorial *(Default Template Style)*
 
 > File ini menggunakan format modern `DESIGN.md` (terstruktur untuk AI coding agent) dengan **signature style modern khusus undangan digital**.  
-> **Cara Pakai:** Langsung pakai sebagai standar default yang modern & elegan, atau ubah bagian *Mood*, *Color Palette*, dan *Typography* di bawah untuk menciptakan karakter baru di setiap project.
+> **Cara Pakai:** Langsung pakai sebagai standar default yang modern & elegan, atau ubah bagian *Mood*, *Color Palette*, dan *Typography* di bawah untuk menciptakan karakter baru di setiap project (`site/css/base.css`).
 
 ---
 
@@ -15,7 +15,7 @@
 
 ---
 
-## 2. Color Palette & Semantic Roles (`site/css/tokens.css`)
+## 2. Color Palette & Semantic Roles (`site/css/base.css` `:root`)
 
 Seluruh kombinasi warna menjaga kontras keterbacaan WCAG AA ($\ge 4.5:1$):
 

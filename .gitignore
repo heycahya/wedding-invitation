@@ -1,4 +1,4 @@
-# Aset mentah sebelum dikompresi ke site/img/ dan site/assets/
+# Aset mentah sebelum dikompresi ke site/assets/{img,audio}/
 raw-assets/
 
 # Environment & OS files

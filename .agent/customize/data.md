@@ -1,7 +1,7 @@
 # Data Undangan & Konfigurasi (Customize per Project)
 
 > Edit file ini untuk mengisi **data acara, URL, dan fitur aktif** project baru.  
-> Kamu boleh menempel teks undangan mentah—AI yang akan memformat ke `site/config.json`, waktu ISO `+07:00`/`+08:00`/`+09:00`, dan tag Open Graph di `site/index.html`.  
+> Kamu boleh menempel teks undangan mentah—AI yang akan memformat langsung ke `site/index.html`, atribut waktu ISO `+07:00`/`+08:00`/`+09:00`, dan tag Open Graph.  
 > **Jangan simpan** nomor WA tamu maupun `spreadsheet_id` di file ini.
 
 ---
@@ -9,7 +9,7 @@
 ## 1. Info Dasar & URL
 - **Slug (`a-z`, `0-9`, `-`):** `nama-pasangan`
 - **URL Live Website (`https://.../`):** `https://example.pages.dev/`
-- **URL Endpoint GAS RSVP/Guestbook (`api.endpointUrl`):** *(opsional — isi jika pakai Google Apps Script eksternal)*
+- **URL Endpoint GAS RSVP/Guestbook (`data-api-url`):** *(opsional — isi jika pakai Google Apps Script eksternal)*
 
 ## 2. Fitur Aktif (`true` / `false`)
 - `quote`: `true` | `countdown`: `true` | `story`: `true` | `gallery`: `true`
@@ -27,14 +27,14 @@
 
 ## 5. Konten Opsional & Penutup
 - **Love Story (Jika aktif):** `[2–4 momen singkat: periode, judul, cerita 1–2 kalimat]`
-- **Galeri (Jika aktif):** `[Daftar foto di site/img/ & videoUrl opsional]`
+- **Galeri (Jika aktif):** `[Daftar foto di site/assets/img/ & videoUrl opsional]`
 - **Wedding Gift (Jika aktif):** `[Bank/e-wallet, nomor rekening, atas nama; alamat kado fisik & QRIS opsional]`
 - **Penutup & Catatan Tamu:** `[Dresscode / informasi tambahan / nama keluarga besar]`
 - **Teks Share WhatsApp (OG):** `[Judul <= 70 karakter, Deskripsi <= 160 karakter]`
 
-## 6. Gambar (`site/img/`) & Audio (`site/assets/`)
-- [ ] `site/img/og-image.jpg` (WAJIB `.jpg` sRGB, `1200×630`, `< 250 KB`)
-- [ ] `site/img/cover.webp`, `site/img/hero.webp` (`< 150 KB`)
-- [ ] `site/img/bride.webp`, `site/img/groom.webp` (`< 80 KB`, opsional)
-- [ ] `site/img/gallery-01.webp`.. (`< 120 KB`/foto, opsional)
-- [ ] `site/assets/bgm.mp3` (`< 2 MB`, opsional)
+## 6. Aset Media (`site/assets/`)
+- [ ] `site/assets/img/og-image.jpg` (WAJIB `.jpg` sRGB, `1200×630`, `< 250 KB`)
+- [ ] `site/assets/img/cover.webp`, `site/assets/img/hero.webp` (`< 150 KB`)
+- [ ] `site/assets/img/bride.webp`, `site/assets/img/groom.webp` (`< 80 KB`, opsional)
+- [ ] `site/assets/img/gallery-01.webp`.. (`< 120 KB`/foto, opsional)
+- [ ] `site/assets/audio/bgm.mp3` (`< 2 MB`, opsional)
