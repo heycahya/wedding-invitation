@@ -30,8 +30,8 @@ Alur kerja bersifat linear tanpa GitHub issue dan tanpa branch per-section:
 
 ### FASE 1 — Scaffold Assets *(setelah user bilang `"spec siap"`)*
 - Baca `.agent/customize/data.md` dan `.agent/customize/design.md`.
-- Susun daftar seluruh asset yang dibutuhkan, lalu buat file placeholder di dalam `site/assets/` pada subfolder: `img/`, `music/`, dan `favicon/`.
-- Placeholder boleh berupa file gambar `1x1 px` (`img/`, `favicon/`) atau file kosong (`music/`).
+- Susun daftar seluruh asset yang dibutuhkan, lalu buat file placeholder di dalam `site/assets/` pada subfolder: `img/` dan `audio/`.
+- Placeholder boleh berupa file gambar `1x1 px` (`img/`) atau file kosong (`audio/`).
 - Beri nama file dengan **nama final** yang akan dirujuk di HTML/CSS (dilarang menamai file `"placeholder"`).
 - Buat `site/assets/README.md` berisi tabel: `Nama File` → `Dipakai di Section` → `Dimensi / Format Disarankan`.
 - **Jangan sentuh** `site/index.html`, `site/css/base.css`, atau `site/js/` pada fase ini.

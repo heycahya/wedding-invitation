@@ -6,7 +6,7 @@ Referensi kontrak antara HTML, CSS, JS, `localStorage`, dan endpoint eksternal G
 
 ## 1. Struktur & Path `site/`
 - Root publikasi Cloudflare Pages: `site/` (Build command kosong).
-- Pada template awal, `site/css/base.css` dan `site/js/{app,api,audio}.js` sengaja dikosongkan dan diisi penuh saat Mode 2 mengikuti kontrak DOM ID & aturan di bawah.
+- Pada template awal, `site/css/base.css` dan `site/js/{app,api,audio}.js` sengaja dikosongkan dan diisi penuh saat Fase 3 — Implementasi per Section mengikuti kontrak DOM ID & aturan di bawah.
 - Seluruh konten teks, jadwal acara, mempelai, dan toggle section dirender **langsung secara statis di `site/index.html`** (tanpa file `config.json` terpisah); ikon antarmuka memakai inline `<svg>` ringan (`< 1 KB`).
 - Gunakan path relatif (`./css/base.css`, `./js/...`, `./assets/img/...`, `./assets/audio/...`) agar berjalan di root domain maupun subpath.
 
