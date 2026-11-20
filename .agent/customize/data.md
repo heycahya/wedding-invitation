@@ -9,11 +9,15 @@
 ## 1. Info Dasar & URL
 - **Slug (`a-z`, `0-9`, `-`):** `nama-pasangan`
 - **URL Live Website (`https://.../`):** `https://example.pages.dev/`
-- **URL Endpoint GAS RSVP/Guestbook (`data-api-url`):** *(opsional — isi jika pakai Google Apps Script eksternal)*
+- **URL Endpoint GAS RSVP/Guestbook (`data-api-url`):** *(opsional — kosongkan `""` bila belum memakai Google Apps Script; lihat aturan mode non-backend di `.agent/TECH-SPEC.md`)*
 
-## 2. Fitur Aktif (`true` / `false`)
-- `quote`: `true` | `countdown`: `true` | `story`: `true` | `gallery`: `true`
-- `rsvp`: `true` *(maxPax: 4)* | `guestbook`: `true` | `gift`: `true` | `audio`: `true`
+## 2. Konfigurasi Tampilan 12 Section & Audio (`Aktif` / `Sembunyikan [hidden]`)
+> Section **CORE** (`Cover`, `Hero`, `Couple`, `Events`, `Closing`) selalu aktif. Section opsional di bawah dapat disembunyikan via atribut HTML `hidden` tanpa menghapus DOM ID maupun fondasinya:
+- `quote`: `Aktif` | `countdown`: `Aktif` | `story`: `Aktif` | `gallery`: `Aktif`
+- `rsvp`: `Aktif` *(atau `Sembunyikan [hidden]` / `Pratinjau` saat `data-api-url` kosong; maxPax: 4)*
+- `guestbook`: `Aktif` *(atau `Sembunyikan [hidden]` / `Pratinjau` saat `data-api-url` kosong)*
+- `gift`: `Aktif` *(atau `Sembunyikan [hidden]`)*
+- `audio`: `Nonaktif` *(isi `data-audio-src="./assets/audio/bgm.mp3"` di `#audio-control` bila diaktifkan; `audio.js` menampilkan tombol otomatis saat `src` terisi)*
 
 ## 3. Data Mempelai & Kutipan
 - **Nama Panggilan & Urutan Tampil:** `[Mempelai 1 & Mempelai 2]`

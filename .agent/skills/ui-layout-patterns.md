@@ -28,7 +28,7 @@ Pilih salah satu sesuai konsep di `design.md`:
 ## 3. Pola Events, Story, Gallery & Gift
 
 - **Events (`#section-events`):**
-  - Gunakan kartu dengan batas garis tipis `1px solid var(--border-subtle)`, header nama acara memakai `--font-display`, jam memakai `tabular-nums`, dan tombol aksi (`Petunjuk Lokasi` + `Simpan ke Kalender`) dalam flex wrap agar rapi di `360px`.
+  - Gunakan kartu dengan batas garis tipis `1px solid var(--border-subtle)`, header nama acara memakai `--font-display`, jam memakai `tabular-nums`, dan tombol aksi (*Petunjuk Lokasi* `https://` Maps + *Simpan ke Kalender* `https://calendar.google.com/...`) dalam flex wrap agar rapi di `360px`.
 - **Story (`#section-story`):**
   - *Left Hairline Timeline:* Garis vertikal tipis `1px` di kiri dengan titik aksen `8px` dan kartu teks rata kiri (gambar opsional `4:3`).
   - *Numbered Chapters:* Tanpa garis timeline — cukup label angka `01`, `02` monospace kecil di atas tiap judul momen.

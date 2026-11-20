@@ -24,7 +24,7 @@ Sebelum menulis CSS/HTML, baca `.agent/customize/design.md` lalu terjemahkan men
    - Dilarang menaruh pill badge mengambang, stiker bunga PNG di sudut layar, atau ikon dekoratif (hati/bintang) di setiap judul section.
    - Dilarang memakai animasi memantul (*bounce/wobble/flip*) atau memicu banyak elemen masuk dari kiri-kanan sekaligus.
 2. **Aksesibilitas & Mobile Ergonomi (`antislop-human` & `antislop-layoutmobile`):**
-   - Kontras teks terhadap latar wajib $\ge 4.5:1$ (WCAG AA). Teks di atas foto wajib pakai directional gradient scrim agar tetap tajam terbaca.
+   - Kontras teks terhadap latar wajib $\ge 4.5:1$ (WCAG AA) dan border kontrol interaktif (input/select/textarea/outline button) wajib $\ge 3.0:1$ (`var(--border-control)`, WCAG 1.4.11). Teks di atas foto wajib pakai directional gradient scrim agar tetap tajam terbaca.
    - Zero horizontal overflow di lebar `360px` (`min-width: 0`, `overflow-wrap: break-word`).
    - Semua `<input>`, `<select>`, `<textarea>` wajib `font-size >= 16px` (`1rem`), semua tombol/link tap target `min-height: 44px`, dan `focus-visible` jelas.
    - Wajib ada `@media (prefers-reduced-motion: reduce)` dan tetap patuhi budget total CSS+JS `site/` **< 50 KB**.
@@ -50,7 +50,7 @@ Teknik berikut **ditolak** jika sekadar hiasan tanpa alasan di `.agent/issues/01
 
 - **Hierarki Tipografi Tegas:** `h1` nama pasangan minimal `2.5x` ukuran teks body; font *script* keriting tidak boleh dipakai untuk paragraf panjang atau nama lengkap bergelar; angka Countdown, jam, dan rekening pakai `tabular-nums`.
 - **Framing Foto Aman:** Foto wajah/potret memakai `object-fit: cover` dan `object-position: center 25%` agar dahi/kepala tidak terpotong.
-- **Konsistensi Visual:** Ketebalan garis (`1px`), gaya radius sudut, dan spacing antar-section memakai CSS custom properties (`:root`) di `site/css/base.css`, serta seluruh tombol punya state `hover`, `active`, dan `disabled` yang jelas.
+- **Konsistensi Visual:** Ketebalan garis (`1px` `--border-subtle` untuk divider dekoratif, `--border-control` untuk input & tombol outline), gaya radius sudut, dan spacing antar-section memakai CSS custom properties (`:root`) di `site/css/base.css`, serta seluruh tombol punya state `hover`, `active`, dan `disabled` yang jelas.
 
 ---
 
