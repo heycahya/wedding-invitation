@@ -1,40 +1,84 @@
 # AGENTS.md — Aturan & Panduan AI
 
-Repo ini adalah **HTML-scaffolded static website template** untuk undangan pernikahan digital (`site/`).  
-Di repo template ini, kerangka semantik HTML (`site/index.html`) sudah tersedia dengan seluruh konten dirender langsung secara statis di HTML (tanpa `config.json`), sedangkan file CSS (`site/css/base.css`) dan JS (`site/js/*`) **sengaja dikosongkan** agar setiap project baru dibangun bersih sesuai `.agent/customize/design.md`, `.agent/customize/data.md`, dan `.agent/TECH-SPEC.md`.
+## Ringkasan
+
+Repo ini adalah template website undangan pernikahan digital statis berbasis **HTML5, CSS3 Custom Properties, dan Vanilla JS ES6+** dengan seluruh file kerja berada di dalam direktori `site/`. Konten dan visual dikendalikan penuh oleh `.agent/customize/data.md` dan `.agent/customize/design.md`, sedangkan kontrak ID DOM dan endpoint mengikuti `.agent/TECH-SPEC.md`.
+
+Alur kerja bersifat linear tanpa GitHub issue dan tanpa branch per-section:
+
+`Clone (Fase 0) → Standby → Scaffold Assets (Fase 1) → Tunggu Assets (Fase 2) → Implementasi per Section (Fase 3) → Audit Akhir (Fase 4)`
 
 ---
 
-## Aturan Mutlak (`NEVER`)
+## Larangan Teknis
 
-1. **Low-Framework & Ringan:** Hanya HTML5, CSS3 Custom Properties, dan Vanilla JS ES6+. Dilarang memakai React/Vue/Next/Tailwind/bundler atau library animasi eksternal. Total seluruh file `.css` + `.js` di `site/` wajib **< 50 KB** (uncompressed).
-2. **Static Hosting + Endpoint GAS Opsional:** Website disajikan statis dari `site/` (Cloudflare Pages). Form RSVP/Guestbook hanya memanggil URL eksternal `data-api-url` (Google Apps Script) bila diisi — dilarang mengusulkan Supabase, database SQL, atau menambah server backend ke repo ini. Bila `data-api-url=""` kosong, `api.js` tetap aman tanpa `fetch()` error mengikuti kontrak mode non-backend di `.agent/TECH-SPEC.md`.
-3. **Isolasi RSVP vs Guestbook & Anti-XSS:** `api.js` hanya membaca Guestbook via `GET ?slug=...` dan tidak pernah mengekspos data RSVP. Parameter `?to=` (maks 60 char) & daftar ucapan Guestbook wajib dirender lewat `textContent` (**dilarang `innerHTML`**). `?to=` hanya untuk sapaan personal pada `#guest-name`, **dilarang** auto-fill ke `#rsvp-name` atau `#guestbook-name`. Link eksternal (`mapUrl`, `calendarUrl`, `instagram`, `videoUrl`) hanya izinkan protokol `https://`/`http://`.
-4. **Open Graph Statis & Repo Bersih:** Tag `<meta property="og:*">` wajib hardcoded di `<head>` `site/index.html` dengan URL absolut `https://...` (`og-image.jpg` `.jpg` sRGB `< 250 KB`). Dilarang menyimpan `spreadsheet_id`, daftar tamu pribadi, atau kredensial di dalam repo.
-
----
-
-## Pembagian File di `site/` (Saat Implementasi Mode 2)
-
-- **Kerangka HTML & Aset:**
-  - `site/index.html` — isi langsung konten undangan dari `.agent/customize/data.md`, perbarui Google Fonts, static `<meta property="og:*">`, `data-slug`/`data-api-url`/`data-target-iso`/`data-audio-src`, ikon inline `<svg>` ringan (`< 1 KB`), serta pertahankan seluruh DOM ID 12 section & `#audio-control` di `.agent/TECH-SPEC.md` (section opsional yang dinonaktifkan cukup diberi atribut `hidden`, jangan dihapus fondasinya).
-  - `site/assets/` — klasifikasi aset media: `site/assets/img/` (`./assets/img/...`) dan `site/assets/audio/` (`./assets/audio/...`).
-- **Lapisan Desain CSS *(Isi Penuh di `site/css/base.css` Sesuai `.agent/customize/design.md`)*:**
-  - `site/css/base.css` — berisi CSS Custom Properties (`:root`) dengan kontras WCAG AA ($\ge 4.5:1$ teks) & WCAG 1.4.11 ($\ge 3.0:1$ `--border-control`), reset + `[hidden] { display: none !important; }`, kanvas max `480px`, `input >= 16px`, tap target `>= 44px`, anti-overflow `360px`, styling seluruh 12 section, serta animasi GPU-only (`transform`/`opacity`) + `@media (prefers-reduced-motion: reduce)`.
-- **Lapisan Fungsional JS *(Isi Sesuai Kontrak `.agent/TECH-SPEC.md`)*:**
-  - `site/js/app.js`, `site/js/api.js`, dan `site/js/audio.js`.
+1. **Stack Minimalis & Budget Ukuran:** Gunakan hanya HTML5, CSS3 Custom Properties, dan Vanilla JS ES6+. Dilarang memakai React, Vue, Next, Tailwind, bundler, atau library animasi eksternal. Jaga total ukuran seluruh file `.css` + `.js` di dalam `site/` tetap **< 50 KB** (uncompressed).
+2. **Static Hosting & Endpoint GAS:** Sajikan website secara statis dari `site/` (Cloudflare Pages). Form RSVP dan Guestbook hanya boleh memanggil Google Apps Script melalui `data-api-url`. Dilarang menambahkan server backend, database SQL, atau layanan seperti Supabase ke repo ini. Jika `data-api-url=""`, tangani secara aman tanpa error `fetch()` sesuai `.agent/TECH-SPEC.md`.
+3. **Anti-XSS & Isolasi Data:** Render parameter `?to=` (maksimal 60 karakter) serta seluruh data user/ucapan Guestbook hanya via `textContent` — **dilarang `innerHTML` untuk input atau data user**. Gunakan `?to=` hanya untuk sapaan di `#guest-name`; dilarang auto-fill ke `#rsvp-name` atau `#guestbook-name`. Baca Guestbook publik hanya via `GET ?slug=...` dan jangan pernah mengekspos data RSVP. Izinkan hanya protokol `https://` dan `http://` untuk tautan eksternal.
+4. **Open Graph Statis & Kebersihan Repo:** Hardcode `<meta property="og:*">` di `<head>` `site/index.html` dengan URL absolut `https://...` (`og-image.jpg` `.jpg` sRGB `< 250 KB`). Dilarang menyimpan `spreadsheet_id`, daftar tamu pribadi, nomor WA, atau kredensial di dalam repo.
+5. **Batas Ruang Kerja & Kontrak Teknis:** Patuhi seluruh ID DOM, atribut `data-*`, mekanisme `hidden` (`[hidden] { display: none !important; }`), serta kontrak endpoint di `.agent/TECH-SPEC.md`. Semua file kerja hanya boleh berada di dalam `site/`; dilarang membuat atau mengubah file di dalam `.agent/`.
 
 ---
 
-## 3 Mode Kerja
+## Alur Kerja (Fase 0–4)
 
-> Pada **Mode 1, 2, dan 3**, wajib patuhi 3 skill UI di `.agent/skills/`:
-> - [`.agent/skills/anti-ai-slop.md`](./.agent/skills/anti-ai-slop.md) — filter anti-desain generik (*Hard Gate, Purpose-Gate, Quality Locks*)
-> - [`.agent/skills/ui-layout-patterns.md`](./.agent/skills/ui-layout-patterns.md) — variasi pola layout modern & ornamen SVG `< 1 KB`
-> - [`.agent/skills/mobile-webview-qa.md`](./.agent/skills/mobile-webview-qa.md) — standar `360px` & WhatsApp In-App Browser
+### FASE 0 — Clone & Standby
+- Clone repo. Jangan ubah file apa pun.
+- Baca hanya: `AGENTS.md` (bagian Larangan Teknis), `.agent/TECH-SPEC.md`, `.agent/customize/data.md`, dan `.agent/customize/design.md`.
+- Cek isi `data.md` dan `design.md`. Jika masih kosong atau berisi nilai template bawaan: **BERHENTI**, minta user melengkapi spec atau bilang `"spec siap"`.
+- Laporkan kepada user: struktur folder repo, status `data.md`, dan status `design.md`.
 
-1. **Mode 1 — Buat Issue Detail:** Baca `.agent/customize/design.md`, `.agent/customize/data.md`, `.agent/TECH-SPEC.md`, dan `.agent/skills/*` → tulis blueprint visual per section (pilih variasi layout, warna, font, motion GPU-only) + arsitektur CSS/JS & pemetaan data statis ke `.agent/issues/01-design.md`. Jangan edit `site/` pada mode ini.
-2. **Mode 2 — Eksekusi Implementasi (HTML, CSS & JS):** Terapkan `.agent/issues/01-design.md` (atau langsung `.agent/customize/` pada One-Shot) ke `site/` dengan mematuhi seluruh `.agent/skills/*` dan kontrak `.agent/TECH-SPEC.md`. Pastikan total `.css` + `.js` di `site/` `< 50 KB` dan `0` pemakaian `innerHTML` pada data user, lalu laporkan hasilnya jujur.
-3. **Mode 3 — Fix UI Cepat & Debug:** Untuk poles tampilan, edit `site/css/base.css` atau `site/index.html` langsung sambil menjaga `:root` tokens, DOM IDs, standar `.agent/skills/*`, `360px` anti-overflow, GPU-only motion (`prefers-reduced-motion`), dan `< 50 KB`. Jika ada error console/CORS/OG/layout, lakukan Root Cause Analysis pada file terkait sebelum memperbaiki kode.
+### FASE 1 — Scaffold Assets *(setelah user bilang `"spec siap"`)*
+- Baca `.agent/customize/data.md` dan `.agent/customize/design.md`.
+- Susun daftar seluruh asset yang dibutuhkan, lalu buat file placeholder di dalam `site/assets/` pada subfolder: `img/`, `music/`, dan `favicon/`.
+- Placeholder boleh berupa file gambar `1x1 px` (`img/`, `favicon/`) atau file kosong (`music/`).
+- Beri nama file dengan **nama final** yang akan dirujuk di HTML/CSS (dilarang menamai file `"placeholder"`).
+- Buat `site/assets/README.md` berisi tabel: `Nama File` → `Dipakai di Section` → `Dimensi / Format Disarankan`.
+- **Jangan sentuh** `site/index.html`, `site/css/base.css`, atau `site/js/` pada fase ini.
 
-> Jika user langsung memberi arahan singkat (*"bikinin sesuai customize"* / *"bikinin sesuai arahan"*) tanpa menyebut mode, jalankan **Mode 1** terlebih dahulu (tulis `.agent/issues/01-design.md`) kecuali user meminta langsung dikerjakan sekaligus (*One-Shot*).
+### FASE 2 — Tunggu Assets
+- Berhenti. Tunggu user menimpa file placeholder di `site/assets/` dengan file asli (nama file sama persis).
+- Lanjut ke Fase 3 hanya setelah user bilang `"assets siap"`.
+- Jika user mengubah nama file asset, catat perubahannya untuk memperbarui referensi pada Fase 3.
+
+### FASE 3 — Implementasi per Section *(setelah user bilang `"assets siap"`)*
+- Urutan utama section: `hero → mempelai → acara → countdown → galeri → RSVP → guestbook → musik → footer`.
+  *(Kerjakan `#section-cover` di awal dan sisipkan section opsional aktif dari `data.md` seperti `quote`, `story`, atau `gift` sesuai urutan HTML di `.agent/TECH-SPEC.md`; section opsional nonaktif tetap dipertahankan ID DOM-nya dengan atribut `hidden`).*
+- Kerjakan **satu section per turn**. Pada setiap turn:
+  1. Patch `site/index.html` (isi konten dari `data.md` dan pertahankan ID DOM `.agent/TECH-SPEC.md`).
+  2. Patch `site/css/base.css` (ikuti `design.md`: warna `:root`, font, spacing, kanvas max `480px`, `input >= 16px`, tap target `>= 44px`, animasi GPU-only + `prefers-reduced-motion`).
+  3. Patch `site/js/main.js` (atau modul `site/js/{app,api,audio}.js` jika memakai skrip bawaan `site/index.html` & `.agent/TECH-SPEC.md`) hanya jika section butuh logika; pastikan tag `<script defer>` di `site/index.html` sinkron.
+  4. Rujuk asset menggunakan path final dari Fase 1 (atau nama baru dari Fase 2 bila diubah user).
+  5. Laporkan: section yang selesai, ukuran total `.css` + `.js` di `site/` saat ini, dan ID DOM yang dipakai.
+- **Jangan lanjut** ke section berikutnya tanpa aba-aba `"lanjut"` dari user.
+
+### FASE 4 — Audit Akhir
+- Periksa seluruh item berikut tanpa mengubah file apa pun kecuali diminta user:
+  1. Total ukuran seluruh file `.css` + `.js` di `site/` `< 50 KB` uncompressed (laporkan angka pastinya).
+  2. Tidak ada `innerHTML` untuk data user; seluruhnya dirender via `textContent`.
+  3. Parameter `?to=` dibatasi `<= 60` karakter dan tidak auto-fill ke form RSVP/Guestbook.
+  4. Form RSVP dan Guestbook hanya memanggil `data-api-url` (Google Apps Script), atau aman tanpa `fetch()` error jika `data-api-url=""`.
+  5. Semua asset yang dirujuk di HTML/CSS tersedia di `site/assets/`.
+  6. Seluruh ID DOM dan atribut data cocok dengan `.agent/TECH-SPEC.md`.
+- Laporkan checklist **LULUS / GAGAL**. Jangan ubah apa pun kecuali diminta.
+
+---
+
+## Aturan Standby
+
+- Jangan mulai Fase 1 sebelum user bilang `"spec siap"`.
+- Jangan mulai Fase 3 sebelum user bilang `"assets siap"`.
+- Jangan lanjut ke section berikutnya tanpa aba-aba `"lanjut"`.
+- Jika `data.md` atau `design.md` ambigu: **TANYA**, jangan asumsi.
+- Jangan buat atau ubah file di dalam `.agent/`.
+- Jangan pakai GitHub issue; branch per-section tidak diperlukan.
+- Jangan bikin desain atau konten sendiri; semua wajib bersumber dari `design.md` dan `data.md`.
+
+---
+
+## Referensi
+
+- [`.agent/TECH-SPEC.md`](./.agent/TECH-SPEC.md) — Kontrak baku ID DOM, struktur 12 section, `localStorage`, dan endpoint GAS.
+- [`.agent/customize/design.md`](./.agent/customize/design.md) — Token warna `:root`, tipografi, spacing, dan arah visual.
+- [`.agent/customize/data.md`](./.agent/customize/data.md) — Konten undangan, toggle section `aktif`/`hidden`, tautan, dan endpoint.
+- `.agent/skills/*` *(opsional, bukan gate)* — Referensi tambahan anti-slop, pola layout, dan QA mobile WebView bila dibutuhkan.
