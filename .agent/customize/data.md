@@ -1,115 +1,81 @@
 # Data Undangan (`data.md`)
 
-> Isi atau ganti nilai di dalam tanda kutip `""` sesuai data project. Jangan simpan nomor WA tamu atau `spreadsheet_id`.
+> Isi nilai di dalam tanda kutip `""` sesuai data project. Jangan simpan nomor WA tamu atau `spreadsheet_id`.  
+> **Konvensi otomatis:** Nama gabungan pasangan, tanggal Cover/Hero, target Countdown, format ISO Google Calendar, teks UI standar `site/index.html`, dan aset default (`./assets/img/{cover,hero,groom,bride,gallery-01..0N,og-image.jpg}`) diturunkan otomatis kecuali diisi di **Bagian 10**.
 
 ---
 
-## 1. Info Dasar & Endpoint
+## 1. Info Dasar, Endpoint & Audio
 - **Slug (`a-z`, `0-9`, `-`):** `"nama-pasangan"`
 - **URL Website (`https://.../`):** `"https://example.pages.dev/"`
 - **Endpoint GAS (`data-api-url`):** `""`
-- **Audio Latar (`data-audio-src`):** `""`
+- **Audio Latar (`data-audio-src`, `""` = nonaktif):** `""`
 
-## 2. Status Tampilan Section (`"aktif"` / `"hidden"`)
-- **Cover:** `"aktif"`
-- **Hero:** `"aktif"`
+## 2. Section Opsional (`"aktif"` / `"hidden"`)
+*(Section inti — Cover, Hero, Couple, Events, Closing — selalu aktif; Audio Control aktif otomatis bila Audio Latar diisi.)*
 - **Quote:** `"aktif"`
-- **Couple:** `"aktif"`
-- **Events:** `"aktif"`
 - **Countdown:** `"aktif"`
 - **Love Story:** `"aktif"`
 - **Gallery:** `"aktif"`
 - **RSVP:** `"aktif"`
 - **Guestbook:** `"aktif"`
 - **Wedding Gift:** `"aktif"`
-- **Closing:** `"aktif"`
-- **Audio Control:** `"hidden"`
 
-## 3. Cover & Hero
-- **Urutan Nama Tampil:** `"Nama Pria & Nama Wanita"`
-- **Eyebrow Cover:** `"The Wedding of"`
-- **Judul Cover:** `"Nama Pria & Nama Wanita"`
-- **Tanggal Cover & Hero:** `"Sabtu, 12 Desember 2026"`
-- **Teks Tombol Cover:** `"Buka Undangan"`
-- **Foto Cover:** `"./assets/img/cover.webp"`
-- **Eyebrow Hero:** `"We Are Getting Married"`
-- **Judul Hero:** `"Nama Pria & Nama Wanita"`
-- **Foto Hero:** `"./assets/img/hero.webp"`
-
-## 4. Quote
-- **Teks Kutipan:** `"Teks kutipan pembuka undangan."`
-- **Sumber Kutipan:** `"Sumber Kutipan"`
-
-## 5. Data Mempelai
-- **Judul Salam Pembuka:** `"Assalamu'alaikum Wr. Wb."`
+## 3. Data Mempelai
+- **Urutan Nama Tampil (`"pria-wanita"` / `"wanita-pria"`):** `"pria-wanita"`
+- **Salam Pembuka:** `"Assalamu'alaikum Wr. Wb."`
 - **Kalimat Pembuka:** `"Dengan memohon rahmat dan ridho Tuhan Yang Maha Esa, kami bermaksud menyelenggarakan pernikahan putra-putri kami:"`
-- **Nama Mempelai Pria:** `"nama-mempelai-pria"`
-- **Nama Lengkap & Gelar Pria:** `"nama-lengkap-mempelai-pria"`
+- **Nama Panggilan Pria:** `"nama-pria"`
+- **Nama Lengkap & Gelar Pria:** `"nama-lengkap-pria"`
 - **Anak Ke (Pria):** `"Putra pertama dari"`
 - **Nama Orang Tua Pria:** `"Bapak nama-ayah-pria & Ibu nama-ibu-pria"`
-- **Instagram Pria:** `""`
-- **Foto Mempelai Pria:** `"./assets/img/groom.webp"`
-- **Nama Mempelai Wanita:** `"nama-mempelai-wanita"`
-- **Nama Lengkap & Gelar Wanita:** `"nama-lengkap-mempelai-wanita"`
+- **Instagram Pria (`https://...`):** `""`
+- **Nama Panggilan Wanita:** `"nama-wanita"`
+- **Nama Lengkap & Gelar Wanita:** `"nama-lengkap-wanita"`
 - **Anak Ke (Wanita):** `"Putri kedua dari"`
 - **Nama Orang Tua Wanita:** `"Bapak nama-ayah-wanita & Ibu nama-ibu-wanita"`
-- **Instagram Wanita:** `""`
-- **Foto Mempelai Wanita:** `"./assets/img/bride.webp"`
+- **Instagram Wanita (`https://...`):** `""`
 
-## 6. Rangkaian Acara & Countdown
-- **Judul Section Acara:** `"Rangkaian Acara"`
-- **Subjudul Acara:** `"Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu."`
-- **Target Countdown ISO:** `"2026-12-12T08:00:00+07:00"`
+## 4. Rangkaian Acara
+*(Tanggal & jam mulai Acara 1 otomatis dipakai untuk Cover, Hero, dan Countdown; format ISO Google Calendar diturunkan dari tanggal + waktu + zona waktu.)*
 - **Nama Acara 1:** `"Akad Nikah"`
-- **Hari & Tanggal Acara 1:** `"Sabtu, 12 Desember 2026"`
+- **Tanggal Acara 1:** `"Sabtu, 12 Desember 2026"`
 - **Waktu Acara 1:** `"08:00 - 10:00 WIB"`
-- **Waktu Mulai ISO 1:** `"2026-12-12T08:00:00+07:00"`
-- **Waktu Selesai ISO 1:** `"2026-12-12T10:00:00+07:00"`
 - **Nama Tempat 1:** `"nama-tempat-1"`
 - **Alamat Lengkap 1:** `"alamat-lengkap-acara-1"`
 - **Link Google Maps 1:** `"https://maps.google.com/?q=lokasi-1"`
-- **Nama Acara 2:** `"Resepsi Pernikahan"`
-- **Hari & Tanggal Acara 2:** `"Sabtu, 12 Desember 2026"`
+- **Nama Acara 2 (`""` jika hanya 1 acara):** `"Resepsi Pernikahan"`
+- **Tanggal Acara 2 (`""` jika sama dengan Acara 1):** `""`
 - **Waktu Acara 2:** `"11:00 - 14:00 WIB"`
-- **Waktu Mulai ISO 2:** `"2026-12-12T11:00:00+07:00"`
-- **Waktu Selesai ISO 2:** `"2026-12-12T14:00:00+07:00"`
 - **Nama Tempat 2:** `"nama-tempat-2"`
 - **Alamat Lengkap 2:** `"alamat-lengkap-acara-2"`
 - **Link Google Maps 2:** `"https://maps.google.com/?q=lokasi-2"`
 
-## 7. Love Story
-- **Judul Story:** `"Kisah Perjalanan Kami"`
+## 5. Quote
+- **Teks Kutipan:** `"Teks kutipan pembuka undangan."`
+- **Sumber Kutipan:** `"Sumber Kutipan"`
+
+## 6. Love Story
 - **Periode 1:** `"2022"`
 - **Judul Momen 1:** `"judul-momen-1"`
 - **Cerita 1:** `"cerita-singkat-momen-1"`
-- **Foto Story 1:** `""`
+- **Foto Story 1 (opsional):** `""`
 - **Periode 2:** `"2024"`
 - **Judul Momen 2:** `"judul-momen-2"`
 - **Cerita 2:** `"cerita-singkat-momen-2"`
-- **Foto Story 2:** `""`
+- **Foto Story 2 (opsional):** `""`
 - **Periode 3:** `"2026"`
 - **Judul Momen 3:** `"judul-momen-3"`
 - **Cerita 3:** `"cerita-singkat-momen-3"`
-- **Foto Story 3:** `""`
+- **Foto Story 3 (opsional):** `""`
 
-## 8. Gallery
-- **Judul Galeri:** `"Momen Bahagia"`
-- **Foto Galeri 1:** `"./assets/img/gallery-01.webp"`
-- **Foto Galeri 2:** `"./assets/img/gallery-02.webp"`
-- **Foto Galeri 3:** `"./assets/img/gallery-03.webp"`
-- **Foto Galeri 4:** `"./assets/img/gallery-04.webp"`
+## 7. Gallery & Konfigurasi RSVP/Guestbook
+- **Jumlah Foto Galeri (`./assets/img/gallery-01.webp` dst.):** `"4"`
 - **Link Video (`https://...`):** `""`
-
-## 9. RSVP & Guestbook
 - **Maksimal Tamu (`maxPax`):** `"4"`
 - **Ucapan per Halaman (`guestbookPageSize`):** `"10"`
-- **Judul RSVP:** `"Konfirmasi Kehadiran"`
-- **Subjudul RSVP:** `"Mohon konfirmasi kehadiran Anda untuk membantu kami mempersiapkan penyambutan terbaik."`
-- **Judul Guestbook:** `"Ucapan & Doa Restu"`
-- **Subjudul Guestbook:** `"Tuliskan doa dan harapan terbaik Anda untuk mengiringi langkah baru kami."`
 
-## 10. Wedding Gift
-- **Judul Gift:** `"Tanda Kasih"`
+## 8. Wedding Gift
 - **Deskripsi Gift:** `"Doa restu Anda merupakan karunia terindah bagi kami. Namun jika ingin memberi tanda kasih, dapat melalui rekening berikut:"`
 - **Bank / E-Wallet 1:** `"nama-bank-1"`
 - **Nomor Rekening 1:** `"0000000000"`
@@ -117,20 +83,20 @@
 - **Bank / E-Wallet 2:** `""`
 - **Nomor Rekening 2:** `""`
 - **Atas Nama 2:** `""`
-- **Gambar QRIS:** `""`
+- **Gambar QRIS (opsional):** `""`
 - **Nama Penerima Kado:** `""`
 - **Alamat Kirim Kado:** `""`
 
-## 11. Closing
-- **Judul Catatan Tamu:** `"Informasi Tambahan"`
-- **Catatan Tamu 1:** `""`
-- **Catatan Tamu 2:** `""`
-- **Judul Penutup:** `"Terima Kasih"`
+## 9. Closing
+- **Catatan Tamu 1 (opsional):** `""`
+- **Catatan Tamu 2 (opsional):** `""`
 - **Pesan Penutup:** `"Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu."`
-- **Tanda Tangan Mempelai:** `"Nama Pria & Nama Wanita"`
 - **Nama Keluarga Besar:** `"Keluarga Besar Mempelai Pria & Keluarga Besar Mempelai Wanita"`
 
-## 12. Open Graph (WhatsApp Share)
-- **OG Title (maks 70 char):** `"Undangan Pernikahan - Nama Pria & Nama Wanita"`
-- **OG Description (maks 160 char):** `"Buka undangan untuk informasi lengkap waktu, lokasi acara, dan konfirmasi kehadiran."`
-- **OG Image (`1200x630` `.jpg`):** `"https://example.pages.dev/assets/img/og-image.jpg"`
+## 10. Override Opsional *(Kosongkan untuk nilai otomatis & default HTML)*
+- **Target Countdown ISO (override Acara 1):** `""`
+- **Nama Gabungan Pasangan (override Cover, Hero, Closing, OG Title):** `""`
+- **Tanggal Cover & Hero (override Tanggal Acara 1):** `""`
+- **OG Title (maks 70 char) / OG Description (maks 160 char):** `""` / `""`
+- **OG Image URL (`1200x630` `.jpg`, default `<URL Website>assets/img/og-image.jpg`):** `""`
+- **Custom Label UI atau Path/Tanpa-Foto (`cover`, `hero`, `groom`, `bride`):** `""`
